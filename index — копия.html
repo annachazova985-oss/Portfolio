@@ -1761,17 +1761,16 @@
   });
 
   document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape'){
-    // закрываем только верхнюю модалку — не все сразу
-    if(privacyOverlay.classList.contains('open')) { closePrivacy(); return; }
-    if(projectOverlay.classList.contains('open')) { closeProject(); return; }
-    if(modalOverlay.classList.contains('open')) { closeModal(); return; }
-  }
-  if(projectOverlay.classList.contains('open') && currentProject && currentProject.photos.length > 1){
-    if(e.key === 'ArrowLeft') galPrev.click();
-    if(e.key === 'ArrowRight') galNext.click();
-  }
-});
+    if(e.key === 'Escape'){
+      if(modalOverlay.classList.contains('open')) closeModal();
+      if(projectOverlay.classList.contains('open')) closeProject();
+      if(privacyOverlay.classList.contains('open')) closePrivacy();
+    }
+    if(projectOverlay.classList.contains('open') && currentProject && currentProject.photos.length > 1){
+      if(e.key === 'ArrowLeft') galPrev.click();
+      if(e.key === 'ArrowRight') galNext.click();
+    }
+  });
 
   /* ---------------- PROJECTS: carousel + lightbox with galleries ---------------- */
   const projectsData = [
