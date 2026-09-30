@@ -1780,8 +1780,16 @@ if(currentDay() === 'custom'){
       const activeRange = rangeOptions.querySelector('button.active');
       whenText = dayLabel() + ', с ' + activeRange.dataset.from + ':00 до ' + activeRange.dataset.to + ':00';
     }
-
+const dateObj = new Date();
+const dateStr = dateObj.toLocaleString('ru-RU', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit'
+});
     const bodyLines = [
+       'Дата заявки: ' + dateStr,
       'Тема: ' + topic,
       'Имя: ' + bnameInput.value.trim(),
       'Телефон: ' + bphoneInput.value.trim(),
@@ -1791,7 +1799,7 @@ if(currentDay() === 'custom'){
       bmsgInput.value.trim()
     ];
     const mailBody = bodyLines.join('%0D%0A');
-    const mailLink = 'mailto:d-tanika@yandex.ru?subject=' + encodeURIComponent(topic + ' — обратный звонок с сайта') + '&body=' + mailBody;
+    const mailLink = 'mailto:d-tanika@yandex.ru?subject=' + encodeURIComponent(topic + ' — обратный звонок с сайта · ' + dateStr) + '&body=' + mailBody;
 
     showNote('Спасибо! Сейчас откроется почтовый клиент — останется отправить письмо, и мы перезвоним.', false);
     window.location.href = mailLink;
