@@ -1206,7 +1206,7 @@
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close" id="modalClose" aria-label="Закрыть">&times;</button>
     <h3 id="modalTitle">Заказать обратный звонок</h3>
-    <p class="lede">Выберите, когда вам удобно, чтобы мы перезвонили. Все поля обязательны.</p>
+    <p class="lede">Заполните форму</p>
     <form id="bookingForm" novalidate>
 
       <div class="field-row">
@@ -1234,7 +1234,7 @@
         <label>Когда позвонить <span class="req">*</span></label>
         <div class="format-options" id="whenOptions">
           <button type="button" class="active" data-when="today">В течение дня</button>
-          <button type="button" data-when="range">В конкретный диапазон</button>
+          <button type="button" data-when="range">В определенное время</button>
         </div>
       </div>
 
@@ -1250,16 +1250,16 @@
       </div>
 
       <div class="field-row" id="rangeRow" hidden>
-        <label>Выберите диапазон <span class="req">*</span></label>
+        <label>В какое время <span class="req">*</span></label>
         <div class="format-options" id="rangeOptions">
           <button type="button" data-from="9" data-to="11">9:00–11:00</button>
           <button type="button" data-from="11" data-to="13">11:00–13:00</button>
           <button type="button" data-from="13" data-to="15">13:00–15:00</button>
           <button type="button" data-from="15" data-to="17">15:00–17:00</button>
-          <button type="button" data-from="17" data-to="18">17:00–18:00</button>
+          <button type="button" data-from="17" data-to="18">17:00–19:00</button>
         </div>
         <span class="field-error" id="rangeError"></span>
-        <p class="range-note" id="rangeNote" hidden>На сегодня свободных интервалов уже нет — выберите другой день.</p>
+        <p class="range-note" id="rangeNote" hidden>Выберите другой день.</p>
       </div>
 
       <div class="field-row">
@@ -1583,7 +1583,7 @@
 
     rangeNote.hidden = !(isToday && !anyAvailable);
     if(activeGotDisabled){
-      rangeError.textContent = 'Этот интервал уже прошёл — выберите другой';
+      rangeError.textContent = 'Невозможно выбрать прошедшее время';
     }
   }
 
@@ -1641,12 +1641,21 @@
     const msgOk = bmsgInput.value.trim().length >= 3;
 
     let dayOk = true;
-    if(currentDay() === 'custom'){
-      dayOk = bdateInput.value.trim() !== '';
-      markField(bdateInput, bdateError, dayOk, 'Укажите дату');
-    } else {
-      bdateError.textContent = '';
-    }
+if(currentDay() === 'custom'){
+  const val = bdateInput.value.trim();
+  if(val === ''){
+    dayOk = false;
+    markField(bdateInput, bdateError, false, 'Укажите дату');
+  } else if(val < todayISO()){
+    dayOk = false;
+    markField(bdateInput, bdateError, false, 'Невозможно указать прошедшую дату');
+  } else {
+    dayOk = true;
+    markField(bdateInput, bdateError, true, '');
+  }
+} else {
+  bdateError.textContent = '';
+}
 
     let rangeOk = true;
     if(when === 'range'){
