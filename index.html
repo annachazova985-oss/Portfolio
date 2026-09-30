@@ -451,6 +451,7 @@
     width:80px; text-align:center; border:none; border-left:1px solid var(--ink-faint); border-right:1px solid var(--ink-faint);
     font-family:var(--serif); font-size:1.3rem; color:var(--ink); background:transparent;
     -moz-appearance:textfield;
+    appearance:textfield;
   }
   .area-stepper input::-webkit-outer-spin-button, .area-stepper input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
   .area-stepper span{ display:flex; align-items:center; padding:0 14px; font-size:0.88rem; color:var(--ink-faint); }
@@ -1438,22 +1439,58 @@
   const modalClose = document.getElementById('modalClose');
 
   function openModal(){
-    lastFocused = document.activeElement;
-    modalOverlay.classList.add('open');
-    lockBody();
-    closeMobileNav();
-    formOpenedAt = Date.now();
-    bookingNote.style.opacity = 0;
-    bookingNote.textContent = '';
-    if(typeof refreshDayAvailability === 'function') refreshDayAvailability();
-    const first = modalOverlay.querySelector('input');
-    if(first) first.focus();
-  }
+  lastFocused = document.activeElement;
+  modalOverlay.classList.add('open');
+  lockBody();
+  closeMobileNav();
+  formOpenedAt = Date.now();
+  bookingNote.style.opacity = 0;
+  bookingNote.textContent = '';
+  if(typeof refreshDayAvailability === 'function') refreshDayAvailability();
+  const first = modalOverlay.querySelector('input');
+  if(first) first.focus();
+  document.addEventListener('keydown', trapFocusInModal);
+}
   function closeModal(){
-    modalOverlay.classList.remove('open');
-    unlockBody();
-    if(lastFocused) lastFocused.focus();
+  modalOverlay.classList.remove('open');
+  unlockBody();
+  if(lastFocused) lastFocused.focus();
+  document.removeEventListener('keydown', trapFocusInModal);
+
+  // сбрасываем форму, чтобы при следующем открытии она была чистой
+  const form = modalOverlay.querySelector('form');
+  if(form){
+    form.reset();
+    form.querySelectorAll('.invalid, .valid, .field-touched').forEach(el=>{
+      el.classList.remove('invalid','valid','field-touched');
+    });
+    form.querySelectorAll('.field-error').forEach(el=>{
+      el.textContent = '';
+    });
   }
+}
+function trapFocusInModal(e){
+  if(e.key !== 'Tab') return;
+  const modal = modalOverlay;
+  if(!modal.classList.contains('open')) return;
+
+  const focusable = modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  if(focusable.length === 0) return;
+
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+
+  if(!e.shiftKey && document.activeElement === last){
+    e.preventDefault();
+    first.focus();
+  }
+  if(e.shiftKey && document.activeElement === first){
+    e.preventDefault();
+    last.focus();
+  }
+}
   document.querySelectorAll('[data-open-modal]').forEach(btn=>btn.addEventListener('click', openModal));
   modalClose.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', e=>{ if(e.target === modalOverlay) closeModal(); });
@@ -1776,12 +1813,14 @@ if(currentDay() === 'custom'){
     if(projectOverlay.classList.contains('open')) { closeProject(); return; }
     if(modalOverlay.classList.contains('open')) { closeModal(); return; }
   }
-  if(projectOverlay.classList.contains('open') && currentProject && currentProject.photos.length > 1){
-    if(e.key === 'ArrowLeft') galPrev.click();
-    if(e.key === 'ArrowRight') galNext.click();
-  }
-});
-
+  if(projectOverlay.classList.contains('open') && 
+   !privacyOverlay.classList.contains('open') && 
+   currentProject && 
+   currentProject.photos.length > 1){
+  if(e.key === 'ArrowLeft') galPrev.click();
+  if(e.key === 'ArrowRight') galNext.click();
+}
+  });
   /* ---------------- PROJECTS: carousel + lightbox with galleries ---------------- */
   const projectsData = [
     {
