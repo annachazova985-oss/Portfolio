@@ -44,7 +44,10 @@
     width:100%;
     position:relative;
   }
-  body.lock-scroll{ position:fixed; left:0; right:0; overflow:hidden; }
+  body.lock-scroll{ overflow:hidden; }
+html.lock-scroll{
+  overflow:hidden;
+}
   img,svg{ display:block; max-width:100%; }
   a{ color:inherit; text-decoration:none; }
   ul{ list-style:none; }
@@ -1418,23 +1421,27 @@
   let lockedScrollY = 0;
   let openOverlaysCount = 0;
 
-  function lockBody(){
-    if(openOverlaysCount === 0){
-      lockedScrollY = window.scrollY;
-      document.body.classList.add('lock-scroll');
-      document.body.style.top = -lockedScrollY + 'px';
-    }
-    openOverlaysCount++;
+ function lockBody(){
+  if(openOverlaysCount === 0){
+    lockedScrollY = window.scrollY;
+    const sbw = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.classList.add('lock-scroll');
+    document.body.classList.add('lock-scroll');
+    document.body.style.paddingRight = sbw + 'px';
+    document.body.style.width = 'calc(100% - ' + sbw + 'px)';
   }
-  function unlockBody(){
-    openOverlaysCount = Math.max(0, openOverlaysCount - 1);
-    if(openOverlaysCount === 0){
-      document.body.classList.remove('lock-scroll');
-      document.body.style.top = '';
-      window.scrollTo(0, lockedScrollY);
-    }
+  openOverlaysCount++;
+}
+function unlockBody(){
+  openOverlaysCount = Math.max(0, openOverlaysCount - 1);
+  if(openOverlaysCount === 0){
+    document.documentElement.classList.remove('lock-scroll');
+    document.body.classList.remove('lock-scroll');
+    document.body.style.paddingRight = '';
+    document.body.style.width = '';
+    window.scrollTo(0, lockedScrollY);
   }
-
+}
   const modalOverlay = document.getElementById('modalOverlay');
   const modalClose = document.getElementById('modalClose');
 
@@ -1454,7 +1461,7 @@
   function closeModal(){
   modalOverlay.classList.remove('open');
   unlockBody();
-  if(lastFocused) lastFocused.focus();
+  
   document.removeEventListener('keydown', trapFocusInModal);
 
   // сбрасываем форму, чтобы при следующем открытии она была чистой
