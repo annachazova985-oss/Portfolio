@@ -1632,19 +1632,27 @@ function trapFocusInModal(e){
   }
 
   function refreshDayAvailability(){
+  if(currentDay() === 'custom'){
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const y = tomorrow.getFullYear();
+    const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const d = String(tomorrow.getDate()).padStart(2, '0');
+    bdateInput.min = `${y}-${m}-${d}`;
+  } else {
     bdateInput.min = todayISO();
-    const todayBtn = dayOptions.querySelector('button[data-day="today"]');
-    const disable = nowDecimalHours() >= 18;
-    todayBtn.disabled = disable;
-    if(disable && todayBtn.classList.contains('active')){
-      todayBtn.classList.remove('active');
-      const tomorrowBtn = dayOptions.querySelector('button[data-day="tomorrow"]');
-      tomorrowBtn.classList.add('active');
-      bdateInput.hidden = true;
-    }
-    refreshRangeAvailability();
   }
-
+  const todayBtn = dayOptions.querySelector('button[data-day="today"]');
+  const disable = nowDecimalHours() >= 18;
+  todayBtn.disabled = disable;
+  if(disable && todayBtn.classList.contains('active')){
+    todayBtn.classList.remove('active');
+    const tomorrowBtn = dayOptions.querySelector('button[data-day="tomorrow"]');
+    tomorrowBtn.classList.add('active');
+    bdateInput.hidden = true;
+  }
+  refreshRangeAvailability();
+}
   // переключатель "когда позвонить"
   whenOptions.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1656,6 +1664,7 @@ function trapFocusInModal(e){
   });
   // переключатель дня
   // переключатель дня
+// переключатель дня
 dayOptions.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
     if(btn.disabled) return;
@@ -1668,18 +1677,10 @@ dayOptions.querySelectorAll('button').forEach(btn => {
       bdateInput.value = '';
       bdateInput.classList.remove('field-touched', 'invalid');
       bdateError.textContent = '';
-    } else {
-      // выбрали «Другая дата» — ставим min = завтра, чтобы сегодня нельзя было кликнуть в календаре
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const y = tomorrow.getFullYear();
-      const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
-      const d = String(tomorrow.getDate()).padStart(2, '0');
-      bdateInput.min = `${y}-${m}-${d}`;
     }
 
-    refreshRangeAvailability();
-    updateFormState();
+    refreshDayAvailability();
+updateFormState();
   });
 });
   // переключатель диапазона
