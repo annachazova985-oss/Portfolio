@@ -1655,17 +1655,33 @@ function trapFocusInModal(e){
     });
   });
   // переключатель дня
-  dayOptions.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if(btn.disabled) return;
-      dayOptions.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      bdateInput.hidden = (btn.dataset.day !== 'custom');
-      if(btn.dataset.day !== 'custom') bdateInput.classList.remove('field-touched', 'invalid');
-      refreshRangeAvailability();
-      updateFormState();
-    });
+  // переключатель дня
+dayOptions.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(btn.disabled) return;
+    dayOptions.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    bdateInput.hidden = (btn.dataset.day !== 'custom');
+
+    if(btn.dataset.day !== 'custom'){
+      // выбрали «Сегодня» или «Завтра» — очищаем поле даты
+      bdateInput.value = '';
+      bdateInput.classList.remove('field-touched', 'invalid');
+      bdateError.textContent = '';
+    } else {
+      // выбрали «Другая дата» — ставим min = завтра, чтобы сегодня нельзя было кликнуть в календаре
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const y = tomorrow.getFullYear();
+      const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const d = String(tomorrow.getDate()).padStart(2, '0');
+      bdateInput.min = `${y}-${m}-${d}`;
+    }
+
+    refreshRangeAvailability();
+    updateFormState();
   });
+});
   // переключатель диапазона
   rangeOptions.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1691,9 +1707,12 @@ if(currentDay() === 'custom'){
     dayOk = false;
     markField(bdateInput, bdateError, false, 'Укажите дату');
   } else if(val < todayISO()){
-    dayOk = false;
-    markField(bdateInput, bdateError, false, 'Невозможно указать прошедшую дату');
-  } else {
+  dayOk = false;
+  markField(bdateInput, bdateError, false, 'Невозможно указать прошедшую дату');
+} else if(val === todayISO()){
+  dayOk = false;
+  markField(bdateInput, bdateError, false, 'Выберите завтрашний день или позже');
+} else {
     dayOk = true;
     markField(bdateInput, bdateError, true, '');
   }
@@ -1705,7 +1724,7 @@ if(currentDay() === 'custom'){
     if(when === 'range'){
       const activeRange = rangeOptions.querySelector('button.active');
       rangeOk = !!activeRange;
-      rangeError.textContent = rangeOk ? '' : 'Выберите один из диапазонов времени';
+      rangeError.textContent = rangeOk ? '' : 'Выберите удобное время';
     } else {
       rangeError.textContent = '';
     }
