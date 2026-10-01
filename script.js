@@ -441,9 +441,29 @@ const dateStr = dateObj.toLocaleString('ru-RU', {
     const mailBody = bodyLines.join('%0D%0A');
     const mailLink = 'mailto:d-tanika@yandex.ru?subject=' + encodeURIComponent(topic + ' — обратный звонок с сайта · ' + dateStr) + '&body=' + mailBody;
 
-    showNote('Спасибо! Сейчас откроется почтовый клиент — останется отправить письмо, и мы перезвоним.', false);
-    window.location.href = mailLink;
+   // копируем текст заявки в буфер обмена — на случай, если почтовый клиент не откроется
+const plainText = bodyLines.join('\n');
+if(navigator.clipboard && navigator.clipboard.writeText){
+  navigator.clipboard.writeText(plainText).catch(()=>{});
+}
 
+showNote('Спасибо! Сейчас откроется почтовый клиент — останется отправить письмо, и мы перезвоним.', false);
+window.location.href = mailLink;
+
+// через 3 секунды показываем резервные контакты — если почта не открылась
+setTimeout(() => {
+  const note = bookingNote;
+  note.innerHTML = `
+    <span style="display:block; margin-bottom:10px;">Не открылся почтовый клиент? Текст заявки скопирован — вставьте его в письмо или напишите нам напрямую:</span>
+    <span style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <a href="https://t.me/+79127839100" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">Telegram</a>
+      <a href="https://m.vk.ru/sreda_st" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">ВКонтакте</a>
+      <a href="https://max.ru/channel_sreda_st" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">MAX</a>
+      <a href="tel:+79127839100" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">Позвонить</a>
+    </span>
+  `;
+  note.style.opacity = 1;
+}, 3000);
     bookingForm.reset();
     [bnameInput, bphoneInput, bmsgInput, bdateInput].forEach(i => i.classList.remove('field-touched', 'invalid', 'valid'));
     bconsentInput.classList.remove('field-touched');
@@ -458,7 +478,7 @@ const dateStr = dateObj.toLocaleString('ru-RU', {
     bdateInput.hidden = true;
     refreshDayAvailability();
     bookingSubmit.disabled = true;
-    setTimeout(closeModal, 2400);
+    setTimeout(closeModal, 8000);
   });
 
   document.addEventListener('keydown', e=>{
