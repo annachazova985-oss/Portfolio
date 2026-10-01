@@ -504,7 +504,7 @@ setTimeout(() => {
   /* ---------------- PROJECTS: carousel + lightbox with galleries ---------------- */
   const projectsData = [
     {
-      tag:'Квартира', title:'Квартира с латунными акцентами', meta:'Пермь · 82 м² · 2025',
+      tag:'Квартира', title:'Квартира с латунными акцентами', meta:'Пермь · 65 м² · 2025',
       cover:'images/img-10.jpg',
       photos:[
         { img:'images/img-10.jpg', caption:'Прихожая — латунные ласточки на стене' },
