@@ -385,11 +385,16 @@ if(currentDay() === 'custom'){
   function saveSubmitHistory(list){
     try{ localStorage.setItem('sreda_booking_submits', JSON.stringify(list)); } catch(e){}
   }
-  function showNote(text, isError){
-    bookingNote.style.color = isError ? '#a4573a' : 'var(--ink-faint)';
-    bookingNote.style.opacity = 1;
-    bookingNote.textContent = text;
+ function showNote(text, isError){
+  bookingNote.style.color = isError ? '#a4573a' : 'var(--ink-faint)';
+  bookingNote.style.opacity = 1;
+  bookingNote.textContent = text;
+  // прокручиваем модалку вниз, чтобы сообщение было видно
+  const modalBox = document.getElementById('modalOverlay').querySelector('.modal-box');
+  if(modalBox){
+    setTimeout(() => { modalBox.scrollTop = modalBox.scrollHeight; }, 50);
   }
+}
 
   bookingForm.addEventListener('submit', e=>{
     e.preventDefault();
@@ -447,14 +452,13 @@ if(navigator.clipboard && navigator.clipboard.writeText){
   navigator.clipboard.writeText(plainText).catch(()=>{});
 }
 
-showNote('Спасибо! Сейчас откроется почтовый клиент — останется отправить письмо, и мы перезвоним.', false);
+showNote('Проверьте почтовый клиент — если он открылся, отправьте письмо. Либо воспользуйтесь кнопками ниже.', false);
 window.location.href = mailLink;
 
-// через 3 секунды показываем резервные контакты — если почта не открылась
+// показываем альтернативные способы связи — если почта не открылась
 setTimeout(() => {
-  const note = bookingNote;
-  note.innerHTML = `
-    <span style="display:block; margin-bottom:10px;">Не открылся почтовый клиент? Текст заявки скопирован — вставьте его в письмо или напишите нам напрямую:</span>
+  bookingNote.innerHTML = `
+    <span style="display:block; margin-bottom:10px;">Текст заявки скопирован. Если почтовый клиент не открылся — вставьте его в письмо или напишите нам напрямую:</span>
     <span style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
       <a href="https://t.me/+79127839100" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">Telegram</a>
       <a href="https://m.vk.ru/sreda_st" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">ВКонтакте</a>
@@ -462,8 +466,10 @@ setTimeout(() => {
       <a href="tel:+79127839100" style="display:inline-flex; align-items:center; padding:8px 14px; background:var(--accent-deep); color:var(--paper-light); text-decoration:none; font-size:0.82rem;">Позвонить</a>
     </span>
   `;
-  note.style.opacity = 1;
-}, 3000);
+  bookingNote.style.opacity = 1;
+  const modalBox = modalOverlay.querySelector('.modal-box');
+  if(modalBox) modalBox.scrollTop = modalBox.scrollHeight;
+}, 800);
     bookingForm.reset();
     [bnameInput, bphoneInput, bmsgInput, bdateInput].forEach(i => i.classList.remove('field-touched', 'invalid', 'valid'));
     bconsentInput.classList.remove('field-touched');
@@ -478,7 +484,6 @@ setTimeout(() => {
     bdateInput.hidden = true;
     refreshDayAvailability();
     bookingSubmit.disabled = true;
-    setTimeout(closeModal, 8000);
   });
 
   document.addEventListener('keydown', e=>{
