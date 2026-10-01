@@ -471,6 +471,9 @@ html.lock-scroll{
   .calc-result .label{ font-size:0.85rem; color:var(--ink-faint); }
   .calc-result .figure{ font-family:var(--serif); font-size:clamp(2.2rem,3vw,3rem); color:var(--accent-deep); margin:16px 0 6px; font-weight:400; }
   .calc-result .sub{ font-size:0.85rem; color:var(--ink-faint); margin-bottom:20px; }
+  .calc-result .sub.calc-sub-warning{
+  color:#a4573a;   /* тот же цвет, что у ошибок формы */
+}
   .calc-services-total{ border-top:1px solid var(--line); padding-top:16px; margin-bottom:6px; }
   .calc-services-line{ display:flex; justify-content:space-between; font-size:0.88rem; color:var(--ink-soft); }
   .calc-grand-total{
@@ -673,11 +676,19 @@ html.lock-scroll{
     .test-card{ flex-basis:280px; }
 
     .calc{ grid-template-columns:1fr; gap:40px; }
-    .package-compare{ grid-template-columns:1fr; }
-    .calc-result{ position:static; }
+.package-compare{ grid-template-columns:1fr; }
+.calc-result{
+  position:static;
+  order:-1;
+  margin-bottom:32px;
+}
 
-    .mood-layout{ grid-template-columns:1fr; }
-    .mood-board-panel{ position:static; }
+.mood-layout{ grid-template-columns:1fr; }
+.mood-board-panel{
+  position:static;
+  order:-1;
+  margin-bottom:32px;
+}
     .swatch-grid .swatch{ flex-basis:calc(33.333% - 9.33px); }
     .swatch-grid.style-grid .swatch{ flex-basis:calc(50% - 7px); }
 
@@ -693,11 +704,13 @@ html.lock-scroll{
     .section{ padding:90px var(--pad); }
     .about-stats{ gap:28px; }
     .swatch-grid .swatch{ flex-basis:calc(50% - 7px); }
-    .calc-result{ padding:32px; }
+    .calc-result{ padding:24px; }
     .modal-box{ padding:40px 26px; }
     .footer-grid{ grid-template-columns:1fr; }
     .car-card{ flex-basis:220px; }
     .test-card{ flex-basis:240px; }
+    .calc-result .figure{ font-size:2rem; }
+.calc-result .label{ font-size:0.78rem; }
   }
 </style>
 </head>
@@ -2052,14 +2065,24 @@ const dateStr = dateObj.toLocaleString('ru-RU', {
   });
 
   function recalc(){
-    const area = clampArea(parseInt(areaInput.value, 10));
-    const pkg = packageRates[currentPackage];
-    const total = area * pkg.rate;
+  const inputArea = clampArea(parseInt(areaInput.value, 10));
+  // минимальная площадь для расчёта — 10 м²
+  const calcArea = Math.max(10, inputArea);
+  const pkg = packageRates[currentPackage];
+  const total = calcArea * pkg.rate;
 
-    calcPackageName.textContent = pkg.name;
-    calcFigure.textContent = fmt(total);
-    calcSub.textContent = area + ' м² · от ' + pkg.rate.toLocaleString('ru-RU') + ' \u20BD/м²';
+  calcPackageName.textContent = pkg.name;
+  calcFigure.textContent = fmt(total);
+
+  // показываем пользователю: если он ввёл меньше 10 — сообщаем, что считаем как за 10
+  if(inputArea < 10){
+  calcSub.textContent = 'Помещение меньше 10 м² рассчитывается как 10 м² · от ' + pkg.rate.toLocaleString('ru-RU') + ' \u20BD/м²';
+    calcSub.classList.add('calc-sub-warning');
+  } else {
+    calcSub.textContent = inputArea + ' м² · от ' + pkg.rate.toLocaleString('ru-RU') + ' \u20BD/м²';
+    calcSub.classList.remove('calc-sub-warning');
   }
+}
 
   recalc();
 
