@@ -638,11 +638,9 @@
   </div>
 </div>
 
-
 <!-- ================= PROJECT LIGHTBOX ================= -->
 <div class="modal-overlay" id="projectOverlay">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="projTitle">
-    <button class="modal-close" id="projectClose" aria-label="Закрыть">&times;</button>
     <div class="project-modal-media" id="projMedia">
       <button class="gallery-nav gallery-prev" id="galPrev" aria-label="Предыдущее фото">‹</button>
       <button class="gallery-nav gallery-next" id="galNext" aria-label="Следующее фото">›</button>
@@ -652,6 +650,35 @@
     <span class="eyebrow-num" id="projTag"></span>
     <h3 id="projTitle"></h3>
     <p style="font-size:0.85rem; color:var(--ink-faint); margin-bottom:20px" id="projMeta"></p>
+
+    <div class="project-share">
+  <span class="share-label">Поделиться проектом:</span>
+  <div class="share-buttons">
+    <a href="#" id="shareTelegram" target="_blank" rel="noopener" aria-label="Поделиться в Telegram" data-tooltip="Поделиться в Telegram">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.6 3.6L2.9 10.9c-.9.35-.9 1.6.02 1.9l4.6 1.5 1.8 5.6c.25.8 1.25.95 1.78.3l2.5-3.1 4.7 3.5c.7.5 1.7.1 1.85-.75l2.8-14.8c.16-.87-.7-1.55-1.5-1.05zM8.9 13.1l8.9-6.6c.2-.15.4.1.24.28l-7.5 7.6c-.3.3-.5.7-.55 1.1l-.15 1.9-.95-3.2c-.13-.4.03-.83.4-1.08z"/></svg>
+    </a>
+    <a href="#" id="shareVK" target="_blank" rel="noopener" aria-label="Поделиться во ВКонтакте" data-tooltip="Поделиться во ВКонтакте">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.16 17.5c-5.38 0-8.45-3.69-8.58-9.82h2.7c.08 4.5 2.07 6.4 3.64 6.79V7.68h2.54v3.6c1.55-.17 3.18-1.94 3.73-3.6h2.54c-.42 2.05-2.18 3.82-3.43 4.48 1.25.53 3.25 2.07 4.01 4.34h-2.8c-.6-1.87-2.16-3.31-4.05-3.49v3.49h-.3z"/></svg>
+    </a>
+    <a href="#" id="shareWhatsApp" target="_blank" rel="noopener" aria-label="Поделиться в WhatsApp" data-tooltip="Поделиться в WhatsApp">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.3-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.3 9.8-9.7 9.8zm5.4-7.3c-.3-.2-1.7-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.9-1.7-2.2s0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5s0-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+    </a>
+    <button type="button" id="shareCopy" aria-label="Скопировать ссылку" data-tooltip="Скопировать ссылку">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+</div>
+
+    <p id="projDesc"></p>
+    <div class="project-brief" id="projBrief">
+      <span>Запрос заказчика</span>
+      <p id="projBriefText"></p>
+    </div>
+    
+    <button class="modal-close" id="projectClose" aria-label="Закрыть">&times;</button>
+  </div>
+</div>
+
     <p id="projDesc"></p>
     <div class="project-brief" id="projBrief">
       <span>Запрос заказчика</span>

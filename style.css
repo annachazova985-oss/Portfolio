@@ -374,6 +374,212 @@ html.lock-scroll{
     position:absolute; left:18px; bottom:18px; font-size:0.78rem; color:var(--paper-light);
     background:rgba(42,37,33,0.55); padding:6px 12px;
   }
+  /* ================= ПОДЕЛИТЬСЯ ПРОЕКТОМ ================= */
+.project-share{
+  margin-top:8px;
+  margin-bottom:32px;
+}
+.project-share .share-label{
+  display:block;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.05rem;
+  color:var(--ink);
+  font-weight:500;
+  margin-bottom:14px;
+}
+.project-share .share-buttons{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:8px;
+  align-items:center;
+}
+.project-share .share-buttons a,
+.project-share .share-buttons button{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  padding:0;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:all .25s ease;
+  text-decoration:none;
+}
+.project-share .share-buttons a:hover,
+.project-share .share-buttons button:hover{
+  background:var(--accent-deep);
+  border-color:var(--accent-deep);
+  color:var(--paper-light);
+}
+.project-share .share-buttons svg{
+  flex:none;
+  width:18px;
+  height:18px;
+}
+.project-share .share-buttons a span,
+.project-share .share-buttons button span{
+  display:none;
+}
+
+/* ===== Tooltips ===== */
+.project-share .share-buttons a::after,
+.project-share .share-buttons button::after{
+  content:attr(data-tooltip);
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:var(--ink);
+  color:var(--paper-light);
+  font-family:var(--sans);
+  font-size:0.74rem;
+  font-style:normal;
+  font-weight:400;
+  white-space:nowrap;
+  padding:6px 10px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  z-index:20;
+}
+.project-share .share-buttons a::before,
+.project-share .share-buttons button::before{
+  content:'';
+  position:absolute;
+  bottom:calc(100% + 2px);
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:6px solid var(--ink);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+  z-index:20;
+}
+.project-share .share-buttons a:hover::after,
+.project-share .share-buttons button:hover::after,
+.project-share .share-buttons a:hover::before,
+.project-share .share-buttons button:hover::before{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ===== Tooltips ===== */
+.project-share .share-buttons a::after,
+.project-share .share-buttons button::after{
+  content:attr(data-tooltip);;
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:var(--ink);
+  color:var(--paper-light);
+  font-family:var(--sans);
+  font-size:0.74rem;
+  font-style:normal;
+  font-weight:400;
+  white-space:nowrap;
+  padding:6px 10px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  z-index:20;
+}
+.project-share .share-buttons a::before,
+.project-share .share-buttons button::before{
+  content:'';
+  position:absolute;
+  bottom:calc(100% + 2px);
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:6px solid var(--ink);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+  z-index:20;
+}
+.project-share .share-buttons a:hover::after,
+.project-share .share-buttons button:hover::after,
+.project-share .share-buttons a:hover::before,
+.project-share .share-buttons button:hover::before{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.project-share .share-buttons a,
+.project-share .share-buttons button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  padding:10px;
+  width:44px;
+  height:44px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.project-share .share-buttons a span,
+.project-share .share-buttons button span{
+  display:none;
+}
+.project-share .share-buttons a:hover,
+.project-share .share-buttons button:hover{
+  background:var(--accent-deep);
+  border-color:var(--accent-deep);
+  color:var(--paper-light);
+}
+.project-share .share-buttons svg{
+  flex:none;
+  width:20px;
+  height:20px;
+}
+.project-share .share-buttons svg{
+  width:16px;
+  height:16px;
+}
+.project-share .share-buttons a,
+.project-share .share-buttons button{
+  flex:0 1 auto;
+  white-space:nowrap;
+}
+.project-share .share-buttons a,
+.project-share .share-buttons button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 14px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  font-family:var(--sans);
+  font-size:0.82rem;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.project-share .share-buttons a:hover,
+.project-share .share-buttons button:hover{
+  background:var(--accent-deep);
+  border-color:var(--accent-deep);
+  color:var(--paper-light);
+}
+.project-share .share-buttons svg{
+  flex:none;
+}
   .car-card .soon{
     position:absolute; top:16px; right:16px; font-size:0.68rem; letter-spacing:0.03em;
     color:var(--paper-light); background:rgba(42,37,33,0.4); padding:5px 10px;
@@ -595,11 +801,12 @@ html.lock-scroll{
   }
   .modal-overlay.open .modal-box{ transform:translateY(0); }
   .modal-close{
-    position:absolute; top:22px; right:22px; width:36px; height:36px; border-radius:50%;
-    border:1px solid var(--line); background:transparent; font-size:1.3rem; line-height:1;
-    color:var(--ink-faint); cursor:pointer; display:flex; align-items:center; justify-content:center;
-    transition:all .25s ease;
-  }
+  position:absolute; top:22px; right:22px; width:36px; height:36px; border-radius:50%;
+  border:1px solid var(--ink-faint); background:var(--paper-light); font-size:1.3rem; line-height:1;
+  color:var(--ink-faint); cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:all .25s ease;
+  z-index:10;
+}
   .modal-close:hover{ border-color:var(--ink); color:var(--ink); }
   .modal-box h3{ font-size:1.7rem; margin-bottom:8px; }
   .modal-box .lede{ font-size:0.95rem; margin-bottom:32px; }

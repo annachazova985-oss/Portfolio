@@ -592,19 +592,59 @@ carTrack.innerHTML = projectsData.map((p, i) => `
   }
 
   function openProject(index){
-    currentProject = projectsData[index];
-    currentPhoto = 0;
-    lastFocused = document.activeElement;
-    renderGalleryPhoto();
-    projTag.textContent = currentProject.tag;
-    projTitle.textContent = currentProject.title;
-    projMeta.textContent = currentProject.meta;
-    projDesc.textContent = currentProject.desc;
-    projBriefText.textContent = currentProject.brief;
-    projectOverlay.classList.add('open');
-    lockBody();
-    projectClose.focus();
+  currentProject = projectsData[index];
+  currentPhoto = 0;
+  lastFocused = document.activeElement;
+  renderGalleryPhoto();
+  projTag.textContent = currentProject.tag;
+  projTitle.textContent = currentProject.title;
+  projMeta.textContent = currentProject.meta;
+  projDesc.textContent = currentProject.desc;
+  projBriefText.textContent = currentProject.brief;
+  projectOverlay.classList.add('open');
+  lockBody();
+  projectClose.focus();
+  updateShareLinks(currentProject);
+}
+
+/* ---------------- ПОДЕЛИТЬСЯ ПРОЕКТОМ ---------------- */
+function updateShareLinks(project){
+  // ссылка на страницу проекта — пока это просто страница сайта с якорем
+  const pageUrl = 'https://annachazova985-oss.github.io/Portfolio/';
+  const shareText = project.title + ' — ' + project.meta + '. Студия дизайна «Среда»';
+  
+  const tg = document.getElementById('shareTelegram');
+  const vk = document.getElementById('shareVK');
+  const wa = document.getElementById('shareWhatsApp');
+  const copy = document.getElementById('shareCopy');
+  
+  if(tg) tg.href = 'https://t.me/share/url?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(shareText);
+  if(vk) vk.href = 'https://vk.com/share.php?url=' + encodeURIComponent(pageUrl) + '&title=' + encodeURIComponent(shareText);
+  if(wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + pageUrl);
+  
+  if(copy){
+    copy.onclick = function(){
+      navigator.clipboard.writeText(shareText + ' ' + pageUrl).then(() => {
+        const span = copy.querySelector('span');
+        const original = span.textContent;
+        span.textContent = 'Скопировано!';
+        setTimeout(() => { span.textContent = original; }, 2000);
+      }).catch(() => {
+        // fallback для старых браузеров
+        const ta = document.createElement('textarea');
+        ta.value = shareText + ' ' + pageUrl;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const span = copy.querySelector('span');
+        const original = span.textContent;
+        span.textContent = 'Скопировано!';
+        setTimeout(() => { span.textContent = original; }, 2000);
+      });
+    };
   }
+}
   function closeProject(){
     projectOverlay.classList.remove('open');
     unlockBody();
