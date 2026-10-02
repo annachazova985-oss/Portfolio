@@ -983,3 +983,39 @@ function updateShareLinks(project){
     }, 3000);
   });
 })();
+/* ================= FADE-IN ДЛЯ ФОНА КАРТОЧЕК ПРОЕКТОВ ================= */
+/* Карточки проектов используют background-image.
+   Ждём, пока фон реально загрузится, и тогда плавно показываем. */
+(function () {
+  function revealCard(card) {
+    const field = card.querySelector('.field');
+    if (!field || field.classList.contains('is-visible')) return;
+
+    // Берём URL из background-image
+    const bg = field.style.backgroundImage;
+    const match = bg.match(/url\(["']?(.*?)["']?\)/);
+    const url = match ? match[1] : null;
+
+    if (!url) {
+      // Не смогли разобрать URL — на всякий случай показываем
+      field.classList.add('is-visible');
+      return;
+    }
+
+    const preloader = new Image();
+    preloader.onload = () => field.classList.add('is-visible');
+    preloader.onerror = () => field.classList.add('is-visible'); // страховка
+    preloader.src = url;
+
+    // Дополнительная страховка: если фото так и не загрузилось за 3 сек
+    setTimeout(() => field.classList.add('is-visible'), 3000);
+  }
+
+  function initCardFadeIn() {
+    document.querySelectorAll('.car-card').forEach(revealCard);
+  }
+
+  // Карточки создаются сразу при загрузке скрипта,
+  // поэтому просто вызываем один раз
+  initCardFadeIn();
+})();
