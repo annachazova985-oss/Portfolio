@@ -213,6 +213,21 @@ function trapFocusInModal(e){
     const d = String(now.getDate()).padStart(2, '0');
     return `${y}-${m}-${d}`;
   }
+
+    /* Проверка, что дата реально существует (например, 31.09 — не существует) */
+  function isValidDate(val){
+    if(!val || typeof val !== 'string') return false;
+    const parts = val.split('-');           // формат input type="date" = YYYY-MM-DD
+    if(parts.length !== 3) return false;
+    const y = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10);
+    const d = parseInt(parts[2], 10);
+    if(isNaN(y) || isNaN(m) || isNaN(d)) return false;
+    if(m < 1 || m > 12) return false;
+    if(d < 1 || d > 31) return false;
+    const date = new Date(y, m - 1, d);
+    return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
+  }
   // "сегодня" — это явный пресет "Сегодня", либо вручную выбранная в календаре сегодняшняя дата
   function isEffectivelyToday(){
     const day = currentDay();
@@ -321,25 +336,25 @@ updateFormState();
     const phoneOk = phoneValid();
     const msgOk = bmsgInput.value.trim().length >= 3;
 
-    let dayOk = true;
-if(currentDay() === 'custom'){
-  const val = bdateInput.value.trim();
-  if(val === ''){
-    dayOk = false;
-    markField(bdateInput, bdateError, false, 'Укажите дату');
-  } else if(val < todayISO()){
-  dayOk = false;
-  markField(bdateInput, bdateError, false, 'Невозможно указать прошедшую дату');
-} else if(val === todayISO()){
-  dayOk = false;
-  markField(bdateInput, bdateError, false, 'Выберите завтрашний день или позже');
-} else {
-    dayOk = true;
-    markField(bdateInput, bdateError, true, '');
-  }
-} else {
-  bdateError.textContent = '';
-}
+            let dayOk = true;
+    if(currentDay() === 'custom'){
+      const val = bdateInput.value.trim();
+      if(val === '' || !isValidDate(val)){
+        dayOk = false;
+        markField(bdateInput, bdateError, false, 'Выберите корректную дату');
+      } else if(val < todayISO()){
+        dayOk = false;
+        markField(bdateInput, bdateError, false, 'Невозможно указать прошедшую дату');
+      } else if(val === todayISO()){
+        dayOk = false;
+        markField(bdateInput, bdateError, false, 'Выберите завтрашний день или позже');
+      } else {
+        dayOk = true;
+        markField(bdateInput, bdateError, true, '');
+      }
+    } else {
+      bdateError.textContent = '';
+    }
 
     let rangeOk = true;
     if(when === 'range'){
