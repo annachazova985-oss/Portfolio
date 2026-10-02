@@ -882,3 +882,32 @@ carTrack.innerHTML = projectsData.map((p, i) => `
       if(img !== 'color') setImageMode(img);
     }catch(e){}
   })();
+  /* ---------------- АНИМАЦИИ ПОЯВЛЕНИЯ СЕКЦИЙ ---------------- */
+(function initReveal(){
+  // блоки, которые будут плавно появляться
+  const sections = document.querySelectorAll('main > section, footer');
+  
+  // если браузер старый и не поддерживает IntersectionObserver — просто показываем всё
+  if(!('IntersectionObserver' in window)){
+    sections.forEach(s => s.classList.add('revealed'));
+    return;
+  }
+  
+  // добавляем класс .reveal ко всем секциям
+  sections.forEach(s => s.classList.add('reveal'));
+  
+  // наблюдатель: когда секция попадает в поле зрения — показываем её
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target); // больше не следим за этой секцией
+      }
+    });
+  }, {
+    threshold: 0.1,        // срабатывает, когда 10% секции видно
+    rootMargin: '0px 0px -80px 0px' // чуть раньше, чтобы не было "прыжка"
+  });
+  
+  sections.forEach(s => observer.observe(s));
+})();

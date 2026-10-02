@@ -727,3 +727,23 @@ html.lock-scroll{
     .calc-result .figure{ font-size:2rem; }
 .calc-result .label{ font-size:0.78rem; }
   }
+  /* ================= АНИМАЦИИ ПОЯВЛЕНИЯ СЕКЦИЙ ================= */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  will-change:opacity, transform;
+}
+.reveal.revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* уважаем настройки пользователя — если просил меньше движения */
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
