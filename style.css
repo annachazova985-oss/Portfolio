@@ -1021,3 +1021,15 @@ html.lock-scroll{
     transition: none;
   }
 }
+/* ================= МОБИЛЬНЫЙ ФИКС: TOOLTIPS НЕ ПОКАЗЫВАЕМ ================= */
+/* На телефоне нет hover — tooltips не нужны и обрезаются по краям.
+   Скрываем их полностью на экранах до 768px. */
+@media (max-width: 768px){
+  .project-share .share-buttons a::after,
+  .project-share .share-buttons button::after,
+  .project-share .share-buttons a::before,
+  .project-share .share-buttons button::before{
+    display: none !important;
+    content: none !important;
+  }
+}
