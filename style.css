@@ -954,3 +954,31 @@ html.lock-scroll{
     transition:none;
   }
 }
+/* ================= FADE-IN ДЛЯ ФОТО ================= */
+/* Фото изначально прозрачное и слегка сдвинуто вниз.
+   Когда оно загрузилось — JS добавляет класс .is-visible,
+   и фото плавно проявляется и поднимается на место. */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.2s;
+  will-change: opacity, transform;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Если у посетителя включено «уменьшить движение» в системе —
+   отключаем анимацию, показываем фото сразу. Это забота о людях
+   с чувствительностью к движению (accessibility). */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

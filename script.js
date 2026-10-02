@@ -951,3 +951,35 @@ function updateShareLinks(project){
   
   sections.forEach(s => observer.observe(s));
 })();
+/* ================= FADE-IN ДЛЯ ФОТО ================= */
+/* Когда фото с классом .fade-in реально загрузилось —
+   добавляем ему класс .is-visible, и оно плавно проявляется.
+   Если JS не сработает — фото просто покажутся как раньше. */
+(function () {
+  const images = document.querySelectorAll('img.fade-in');
+
+  images.forEach(function (img) {
+    // Если картинка уже в кэше и загружена мгновенно
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add('is-visible');
+      return;
+    }
+
+    // Когда загрузилась — плавно показываем
+    img.addEventListener('load', function () {
+      img.classList.add('is-visible');
+    });
+
+    // Страховка: если что-то пошло не так (ошибка загрузки),
+    // всё равно показываем место — чтобы не было «дырок».
+    img.addEventListener('error', function () {
+      img.classList.add('is-visible');
+    });
+
+    // Дополнительная страховка: если через 3 секунды фото
+    // всё ещё не загрузилось — показываем принудительно.
+    setTimeout(function () {
+      img.classList.add('is-visible');
+    }, 3000);
+  });
+})();
