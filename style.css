@@ -218,7 +218,12 @@ html.lock-scroll{
   nav.desktop-nav a:hover::after, nav.desktop-nav a:focus-visible::after{ transform:scaleX(1); transform-origin:left; }
 
   .header-actions{ display:flex; align-items:center; gap:18px; }
-  .header-phone{ font-size:0.85rem; color:var(--ink-soft); white-space:nowrap; }
+  .header-phone{
+  font-size:0.85rem; color:var(--ink-soft); white-space:nowrap;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.header-phone .phone-icon{ display:none; }
+.header-phone .phone-number{ display:inline; }
 
   .menu-btn{
     display:none; background:none; border:1px solid var(--ink); border-radius:999px;
@@ -839,7 +844,30 @@ html.lock-scroll{
   /* ================= responsive ================= */
   @media (max-width:980px){
     nav.desktop-nav{ display:none; }
-    .header-phone{ display:none; }
+    .header-phone{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  padding:0;
+  color:var(--ink);
+  flex:none;
+}
+.header-phone .phone-icon{ display:block; }
+.header-phone .phone-number{ display:none; }
+
+/* На мобильном скрываем кнопку «Записаться» в шапке — 
+   она есть в мобильном меню */
+.header-actions .btn-solid{ display:none; }
+
+/* На мобильном скрываем подзаголовок под логотипом */
+.brand small.brand-sub,
+.brand .brand-sub{
+  display:none;
+}
     .menu-btn{ display:flex; }
 
     .hero-text{ grid-column:1 / span 12; }
