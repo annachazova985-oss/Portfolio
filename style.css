@@ -427,27 +427,6 @@ html.lock-scroll{
   display:none;
 }
 
-/* ===== Tooltips ===== */
-.project-share .share-buttons a::after,
-.project-share .share-buttons button::after{
-  content:attr(data-tooltip);
-  position:absolute;
-  bottom:calc(100% + 8px);
-  left:50%;
-  transform:translateX(-50%) translateY(4px);
-  background:var(--ink);
-  color:var(--paper-light);
-  font-family:var(--sans);
-  font-size:0.74rem;
-  font-style:normal;
-  font-weight:400;
-  white-space:nowrap;
-  padding:6px 10px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .2s ease, transform .2s ease;
-  z-index:20;
-}
 .project-share .share-buttons a::before,
 .project-share .share-buttons button::before{
   content:'';
@@ -473,27 +452,6 @@ html.lock-scroll{
   transform:translateX(-50%) translateY(0);
 }
 
-/* ===== Tooltips ===== */
-.project-share .share-buttons a::after,
-.project-share .share-buttons button::after{
-  content:attr(data-tooltip);;
-  position:absolute;
-  bottom:calc(100% + 8px);
-  left:50%;
-  transform:translateX(-50%) translateY(4px);
-  background:var(--ink);
-  color:var(--paper-light);
-  font-family:var(--sans);
-  font-size:0.74rem;
-  font-style:normal;
-  font-weight:400;
-  white-space:nowrap;
-  padding:6px 10px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .2s ease, transform .2s ease;
-  z-index:20;
-}
 .project-share .share-buttons a::before,
 .project-share .share-buttons button::before{
   content:'';
@@ -1031,5 +989,55 @@ html.lock-scroll{
   .project-share .share-buttons button::before{
     display: none !important;
     content: none !important;
+  }
+}
+/* ================= TOOLTIPS ТОЛЬКО НА УСТРОЙСТВАХ С МЫШЬЮ ================= */
+@media (hover: hover) and (pointer: fine){
+
+  .project-share .share-buttons a::after,
+  .project-share .share-buttons button::after{
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--ink);
+    color: var(--paper-light);
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-style: normal;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 6px 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 20;
+  }
+
+  .project-share .share-buttons a::before,
+  .project-share .share-buttons button::before{
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--ink);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+    z-index: 20;
+  }
+
+  .project-share .share-buttons a:hover::after,
+  .project-share .share-buttons button:hover::after,
+  .project-share .share-buttons a:hover::before,
+  .project-share .share-buttons button:hover::before{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
