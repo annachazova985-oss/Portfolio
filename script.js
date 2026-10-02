@@ -547,12 +547,13 @@ setTimeout(() => {
   ];
 
   const carTrack = document.getElementById('carTrack');
-  carTrack.innerHTML = projectsData.map((p, i) => `
-    <article class="car-card" data-index="${i}" tabindex="0" role="button" aria-label="Открыть проект: ${p.title}">
-      <div class="field" style="background-image:url('${p.cover}')"></div>
-      ${p.photos.length > 1 ? `<span class="soon">${p.photos.length} фото</span>` : ''}
-      <span class="tag">${p.tag}</span>
-    </article>`).join('');
+carTrack.innerHTML = projectsData.map((p, i) => `
+  <article class="car-card" data-index="${i}" tabindex="0" role="button" aria-label="Открыть проект: ${p.title}">
+    <div class="field" style="background-image:url('${p.cover}')"></div>
+    ${p.photos.length > 1 ? `<span class="soon">${p.photos.length} фото</span>` : ''}
+    <span class="tag">${p.tag}</span>
+    <span class="view-btn">Смотреть проект</span>
+  </article>`).join('');
 
   document.getElementById('carPrev').addEventListener('click', ()=> carTrack.scrollBy({left:-290, behavior:'smooth'}));
   document.getElementById('carNext').addEventListener('click', ()=> carTrack.scrollBy({left:290, behavior:'smooth'}));

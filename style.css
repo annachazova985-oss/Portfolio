@@ -323,15 +323,23 @@ html.lock-scroll{
     scrollbar-width:thin; scrollbar-color:var(--ink-faint) transparent;
     flex:1 1 0%; min-width:0;
   }
-  .car-card{
-    flex:0 0 260px; scroll-snap-align:start; aspect-ratio:4/5; position:relative;
-    overflow:hidden; border-radius:1px; cursor:pointer;
-  }
-  .car-card .field{
-    position:absolute; inset:0; background-size:cover; background-position:center;
-    transition:transform .6s cubic-bezier(.2,.7,.2,1);
-  }
-  .car-card:hover .field{ transform:scale(1.05); }
+.car-card{
+  flex:0 0 260px; scroll-snap-align:start; aspect-ratio:4/5; position:relative;
+  overflow:hidden; border-radius:1px; cursor:pointer;
+  transition:box-shadow .4s ease, transform .4s ease;
+}
+.car-card:hover{
+  box-shadow:0 12px 30px rgba(42,37,33,0.25);
+  transform:translateY(-4px);
+}
+ .car-card .field{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+}
+.car-card:hover .field{
+  transform:scale(1.08);
+  filter:brightness(0.85);
+}
   .car-card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
   .grad-a{ background:radial-gradient(120% 90% at 15% 10%,#d8c7a3 0%,transparent 55%),radial-gradient(100% 100% at 90% 100%,#8a9678 0%,transparent 55%),linear-gradient(150deg,#cdbb98,#b7a37e 80%); }
@@ -370,6 +378,25 @@ html.lock-scroll{
     position:absolute; top:16px; right:16px; font-size:0.68rem; letter-spacing:0.03em;
     color:var(--paper-light); background:rgba(42,37,33,0.4); padding:5px 10px;
   }
+  .car-card .view-btn{
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%, -50%) scale(0.9);
+  padding:12px 24px;
+  background:var(--paper-light);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:0.85rem;
+  letter-spacing:0.03em;
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity .35s ease, transform .35s ease;
+  pointer-events:none;
+}
+.car-card:hover .view-btn{
+  opacity:1;
+  transform:translate(-50%, -50%) scale(1);
+}
   .car-btn{
     flex:none; width:46px; height:46px; border-radius:50%; border:1px solid var(--ink);
     background:transparent; font-size:1.2rem; color:var(--ink); cursor:pointer;
