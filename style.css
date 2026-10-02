@@ -322,6 +322,7 @@ html.lock-scroll{
     scroll-behavior:smooth; padding:4px 2px 16px;
     scrollbar-width:thin; scrollbar-color:var(--ink-faint) transparent;
     flex:1 1 0%; min-width:0;
+    scroll-padding: 0 var(--pad);
   }
 .car-card{
   flex:0 0 260px; scroll-snap-align:start; aspect-ratio:4/5; position:relative;
@@ -920,7 +921,17 @@ html.lock-scroll{
     .footer-grid{ grid-template-columns:1fr 1fr; }
     .footer-brand{ grid-column:1 / -1; margin-bottom:12px; }
   }
-
+/* ================= МОБИЛЬНЫЙ ФИКС: КАРУСЕЛИ БЕЗ КНОПОК ================= */
+/* На телефоне кнопки ‹ и › занимают половину ширины и сжимают карточки.
+   Листать всё равно удобнее пальцем — поэтому кнопки прячем. */
+@media (max-width: 768px){
+  .carousel-wrap .car-btn{
+    display: none;
+  }
+  .carousel-wrap{
+    gap: 0;
+  }
+}
   @media (max-width:560px){
     .steps{ grid-template-columns:1fr; }
     .section{ padding:90px var(--pad); }
@@ -930,7 +941,14 @@ html.lock-scroll{
     .modal-box{ padding:40px 26px; }
     .footer-grid{ grid-template-columns:1fr; }
     .car-card{ flex-basis:220px; }
-    .test-card{ flex-basis:240px; }
+    .test-card{
+  flex-basis: 85%;
+  max-width: 340px;
+  padding: 24px;
+}
+.test-card .test-photo{
+  margin: -24px -24px 20px;
+}
     .calc-result .figure{ font-size:2rem; }
 .calc-result .label{ font-size:0.78rem; }
   }
