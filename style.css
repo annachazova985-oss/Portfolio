@@ -759,17 +759,48 @@ html.lock-scroll{
   }
   .modal-overlay.open{ opacity:1; pointer-events:auto; }
   .modal-box{
-    background:var(--paper-light); width:100%; max-width:580px; max-height:88vh; overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-    padding:52px 44px; position:relative; transform:translateY(24px); transition:transform .35s ease;
-  }
+  background:var(--paper-light); width:100%; max-width:580px; max-height:88vh; overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+    padding:72px 44px 52px; position:relative; transform:translateY(24px); transition:transform .35s ease;
+
+  /* Тонкий скроллбар — Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(42,37,33,0.25) transparent;
+}
+
+/* Тонкий скроллбар — Chrome, Safari, Edge */
+.modal-box::-webkit-scrollbar{
+  width: 6px;
+}
+.modal-box::-webkit-scrollbar-track{
+  background: transparent;
+}
+.modal-box::-webkit-scrollbar-thumb{
+  background: rgba(42,37,33,0.25);
+  border-radius: 3px;
+}
+.modal-box::-webkit-scrollbar-thumb:hover{
+  background: rgba(42,37,33,0.4);
+}
+.modal-box::-webkit-scrollbar-button{
+  display: none;
+  width: 0;
+  height: 0;
+}
   .modal-overlay.open .modal-box{ transform:translateY(0); }
   .modal-close{
   position:absolute; top:22px; right:22px; width:36px; height:36px; border-radius:50%;
-  border:1px solid var(--ink-faint); background:var(--paper-light); font-size:1.3rem; line-height:1;
+  border:1px solid var(--ink-faint); background:var(--paper-light);
   color:var(--ink-faint); cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:all .25s ease;
   z-index:10;
+  padding:0; line-height:0;
+}
+.modal-close svg{
+  width:14px; height:14px; display:block;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
 }
   .modal-close:hover{ border-color:var(--ink); color:var(--ink); }
   .modal-box h3{ font-size:1.7rem; margin-bottom:8px; }

@@ -630,12 +630,10 @@ function updateShareLinks(project){
   
   const tg = document.getElementById('shareTelegram');
   const vk = document.getElementById('shareVK');
-  const wa = document.getElementById('shareWhatsApp');
   const copy = document.getElementById('shareCopy');
   
   if(tg) tg.href = 'https://t.me/share/url?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(shareText);
   if(vk) vk.href = 'https://vk.com/share.php?url=' + encodeURIComponent(pageUrl) + '&title=' + encodeURIComponent(shareText);
-  if(wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + pageUrl);
   
   if(copy){
     copy.onclick = function(){
