@@ -850,7 +850,7 @@ html.lock-scroll{
   .footer-brand .logo-mark{ width:44px; height:44px; }
   .footer-brand-text .brand{ color:var(--paper-light); font-size:1.3rem; }
   .footer-brand-text p{ color:#b7bfa9; font-size:0.88rem; margin-top:10px; max-width:32ch; }
-  footer h4{ font-family:var(--sans); font-size:0.82rem; letter-spacing:0.04em; color:#9aa38a; margin-bottom:22px; font-weight:500; }
+  footer .footer-title{ font-family:var(--sans); font-size:0.82rem; letter-spacing:0.04em; color:#9aa38a; margin-bottom:22px; font-weight:500; }
   footer .footer-links a, footer .footer-contacts a, footer .footer-contacts span{
     display:block; font-size:0.92rem; color:#d8dccf; margin-bottom:14px;
   }
