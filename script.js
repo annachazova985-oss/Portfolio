@@ -682,6 +682,89 @@ function updateShareLinks(project){
     currentPhoto = (currentPhoto + 1) % currentProject.photos.length;
     renderGalleryPhoto();
   });
+    /* ---------------- СВАЙП В ГАЛЕРЕЕ ПРОЕКТА ---------------- */
+  (function initGallerySwipe(){
+    const SWIPE_THRESHOLD = 50;
+    const VERTICAL_LIMIT = 80;
+
+    let startX = 0;
+    let startY = 0;
+    let startTime = 0;
+    let isTouching = false;
+
+    projMedia.addEventListener('touchstart', (e) => {
+      if (!projectOverlay.classList.contains('open')) return;
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      startTime = Date.now();
+      isTouching = true;
+    }, { passive: true });
+
+    projMedia.addEventListener('touchmove', (e) => {
+      if (!isTouching) return;
+      const t = e.touches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        if (e.cancelable) e.preventDefault();
+      }
+    }, { passive: false });
+
+    projMedia.addEventListener('touchend', (e) => {
+      if (!isTouching) return;
+      isTouching = false;
+
+      if (!projectOverlay.classList.contains('open')) return;
+      if (!currentProject || currentProject.photos.length < 2) return;
+
+      const t = e.changedTouches[0];
+      const deltaX = t.clientX - startX;
+      const deltaY = t.clientY - startY;
+      const duration = Date.now() - startTime;
+
+      if (duration > 700) return;
+      if (Math.abs(deltaY) > VERTICAL_LIMIT) return;
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+      if (deltaX < 0) {
+        galNext.click();
+      } else {
+        galPrev.click();
+      }
+    }, { passive: true });
+
+    projMedia.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.gallery-nav')) return;
+      startX = e.clientX;
+      startY = e.clientY;
+      startTime = Date.now();
+      isTouching = true;
+    });
+
+    projMedia.addEventListener('mouseup', (e) => {
+      if (!isTouching) return;
+      if (e.target.closest('.gallery-nav')) return;
+      isTouching = false;
+
+      if (!projectOverlay.classList.contains('open')) return;
+      if (!currentProject || currentProject.photos.length < 2) return;
+
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+      const duration = Date.now() - startTime;
+
+      if (duration > 700) return;
+      if (Math.abs(deltaY) > VERTICAL_LIMIT) return;
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+      if (deltaX < 0) {
+        galNext.click();
+      } else {
+        galPrev.click();
+      }
+    });
+  })();
 
   /* ---------------- TESTIMONIALS ---------------- */
   const testimonialsData = [

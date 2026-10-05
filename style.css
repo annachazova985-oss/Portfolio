@@ -974,7 +974,7 @@ html.lock-scroll{
     .about-stats{ gap:28px; }
     .swatch-grid .swatch{ flex-basis:calc(50% - 7px); }
     .calc-result{ padding:24px; }
-    .modal-box{ padding:40px 26px; }
+    .modal-box{ padding:72px 26px 40px; }
     .footer-grid{ grid-template-columns:1fr; }
     .car-card{ flex-basis:220px; }
     .test-card{
@@ -1117,5 +1117,11 @@ html.lock-scroll{
   .project-share .share-buttons button:hover::before{
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+}
+/* На мобильном и планшете стрелки галереи не нужны — там свайп */
+@media (max-width: 768px){
+  .project-modal-media .gallery-nav{
+    display: none;
   }
 }
