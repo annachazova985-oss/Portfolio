@@ -1115,3 +1115,20 @@ function updateShareLinks(project){
   // поэтому просто вызываем один раз
   initCardFadeIn();
 })();
+/* ================= ПРОГРЕСС-БАР ЧТЕНИЯ ================= */
+/* Полоска вверху страницы, показывает, сколько пользователь прочитал. */
+(function initProgressBar(){
+  const fill = document.getElementById('progressBarFill');
+  if(!fill) return;
+
+  function updateProgress(){
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    fill.style.width = Math.min(100, Math.max(0, percent)) + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+})();
