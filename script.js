@@ -831,6 +831,37 @@ function updateShareLinks(project){
     }
     col.addEventListener('click', selectCol);
     col.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectCol(); } });
+  });  /* Универсальная функция выбора пакета — вызывается и из карточек, и из таблицы.
+     Синхронизирует подсветку везде: карточки + таблица. */
+  const packageTableHeaders = document.querySelectorAll('.package-table .col-package');
+  const packageTableCells = document.querySelectorAll('.package-table .col-check');
+
+  function syncTableHighlight(pkg){
+    packageTableHeaders.forEach(th => th.classList.toggle('active', th.dataset.package === pkg));
+    packageTableCells.forEach((td, i) => {
+      const col = i % 2 === 0 ? 'standard' : 'extended';
+      td.classList.toggle('active', col === pkg);
+    });
+  }
+
+  function selectPackage(pkg){
+    packageCols.forEach(c => c.classList.toggle('active', c.dataset.package === pkg));
+    syncTableHighlight(pkg);
+    currentPackage = pkg;
+    recalc();
+  }
+
+  // Клик по карточкам (мобильная версия)
+  packageCols.forEach(col => {
+    col.addEventListener('click', () => selectPackage(col.dataset.package));
+    col.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectPackage(col.dataset.package); }
+    });
+  });
+
+  // Клик по заголовкам таблицы (десктоп)
+  packageTableHeaders.forEach(th => {
+    th.addEventListener('click', () => selectPackage(th.dataset.package));
   });
 
   function recalc(){

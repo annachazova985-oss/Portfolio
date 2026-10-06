@@ -1150,3 +1150,106 @@ html.lock-scroll{
     transition: none;
   }
 }
+/* ================= ТАБЛИЦА СОСТАВА ПАКЕТОВ ================= */
+.package-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  table-layout: auto;
+  margin-top: 12px;
+}
+.package-table thead th:first-child,
+.package-table tbody td:first-child {
+  white-space: nowrap;
+}
+.package-table thead th.col-package,
+.package-table tbody td.col-check {
+  min-width: 200px;
+}
+.package-table thead th {
+  padding: 22px 20px;
+  text-align: left;
+  border-bottom: 2px solid var(--line);
+  vertical-align: top;
+}
+.package-table thead th.col-package {
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+.package-table thead th.col-package:hover {
+  background: rgba(42,37,33,0.03);
+}
+.package-table thead th.col-package.active {
+  background: var(--accent-deep);
+  color: var(--paper-light);
+}
+.package-table thead th.col-package.active .package-name,
+.package-table thead th.col-package.active .package-rate,
+.package-table thead th.col-package.active .package-rate small {
+  color: var(--paper-light);
+}
+.package-table .package-name {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+.package-table .package-rate {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.package-table .package-rate small {
+  font-weight: 400;
+  opacity: 0.7;
+}
+.package-table .th-hint {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-weight: 400;
+}
+.package-table thead th.col-package.active .th-hint {
+  color: rgba(244,238,226,0.7);
+}
+.package-table tbody td {
+  padding: 12px 20px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.package-table tbody tr:hover {
+  background: rgba(42,37,33,0.02);
+}
+.package-table tbody td:first-child {
+  color: var(--ink);
+}
+.package-table tbody td.col-check {
+  text-align: center;
+  font-size: 1.1rem;
+  transition: background 0.25s ease;
+}
+.package-table tbody td.col-check.active {
+  background: rgba(51,62,45,0.06);
+}
+.package-table .check-yes {
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.package-table .check-no {
+  color: #c7c0b3;
+}
+
+/* На десктопе карточки скрыты, таблица видна */
+@media (min-width: 981px) {
+  .package-compare { display: none; }
+}
+/* На мобильном и планшете таблица скрыта, карточки видны */
+@media (max-width: 980px) {
+  .package-table { display: none; }
+}
