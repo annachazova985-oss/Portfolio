@@ -898,6 +898,14 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
 
   /* ---------------- MOODBOARD ---------------- */
   const selected = { color:null, texture:null, style:[] };
+    // Функция сохранения мудборда в память браузера
+  function saveMoodboard() {
+    try {
+      localStorage.setItem('sreda_moodboard', JSON.stringify(selected));
+    } catch(e) {
+      // Если память переполнена или отключена — просто игнорируем
+    }
+  }
   const boardPreview = document.getElementById('boardPreview');
   const boardCount = document.getElementById('boardCount');
   const sendBtn = document.getElementById('sendMoodBtn');
@@ -946,6 +954,7 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
       if(selected.color && selected.color.name === name){ selected.color = null; }
       else { sw.classList.add('selected'); selected.color = { name, chipHTML }; }
       renderBoard();
+      saveMoodboard();
     });
   });
 
@@ -957,6 +966,7 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
       if(selected.texture && selected.texture.name === name){ selected.texture = null; }
       else { sw.classList.add('selected'); selected.texture = { name, chipHTML }; }
       renderBoard();
+      saveMoodboard();
     });
   });
 
@@ -979,6 +989,7 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
         sw.classList.add('selected');
       }
       renderBoard();
+      saveMoodboard();
     });
   });
 
@@ -990,6 +1001,33 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
     const body = 'Здравствуйте!%0D%0A%0D%0AСобрал(а) мудборд на сайте студии «Среда»:%0D%0A' + lines.join('%0D%0A') + '%0D%0A%0D%0AРасскажу подробнее при встрече.';
     window.location.href = 'mailto:d-tanika@yandex.ru?subject=' + encodeURIComponent('Мудборд с сайта') + '&body=' + body;
   });
+    // Восстановление мудборда при загрузке страницы
+  (function restoreMoodboard() {
+    try {
+      const saved = localStorage.getItem('sreda_moodboard');
+      if (!saved) return; // Если ничего не сохранено — выходим
+
+      const parsed = JSON.parse(saved);
+      
+      // Восстанавливаем данные
+      selected.color = parsed.color || null;
+      selected.texture = parsed.texture || null;
+      selected.style = parsed.style || [];
+
+      // Восстанавливаем визуальное выделение (рамку) на свотчах
+      document.querySelectorAll('.swatch').forEach(sw => {
+        const name = sw.dataset.name;
+        if (selected.color && selected.color.name === name) sw.classList.add('selected');
+        if (selected.texture && selected.texture.name === name) sw.classList.add('selected');
+        if (selected.style.some(s => s.name === name)) sw.classList.add('selected');
+      });
+
+      // Перерисовываем превью справа
+      renderBoard();
+    } catch(e) {
+      // Если данные повреждены — просто игнорируем
+    }
+  })();
 
   /* ---------------- ACCESSIBILITY WIDGET ---------------- */
   const a11yWidget = document.getElementById('a11yWidget');
