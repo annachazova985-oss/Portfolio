@@ -793,9 +793,7 @@ function updateShareLinks(project){
 
   const packageCols = document.querySelectorAll('#packageCompare .package-col');
   const areaInput = document.getElementById('areaInput');
-  const areaPresetBtns = document.querySelectorAll('#areaPresets button');
-  const areaMinus = document.getElementById('areaMinus');
-  const areaPlus = document.getElementById('areaPlus');
+  const areaSlider = document.getElementById('areaSlider');
   const calcPackageName = document.getElementById('calcPackageName');
   const calcFigure = document.getElementById('calcFigure');
   const calcSub = document.getElementById('calcSub');
@@ -807,20 +805,32 @@ function updateShareLinks(project){
   function clampArea(v){ return Math.min(500, Math.max(5, v || 5)); }
 
   function setArea(v){
-    v = clampArea(v);
-    areaInput.value = v;
-    areaPresetBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.area, 10) === v));
-    recalc();
-  }
+  v = clampArea(v);
+  areaInput.value = v;
+  if(areaSlider) areaSlider.value = v;
+  recalc();
+}
 
-  areaPresetBtns.forEach(btn => btn.addEventListener('click', () => setArea(parseInt(btn.dataset.area, 10))));
-  areaMinus.addEventListener('click', () => setArea(parseInt(areaInput.value, 10) - 5));
-  areaPlus.addEventListener('click', () => setArea(parseInt(areaInput.value, 10) + 5));
-  areaInput.addEventListener('input', () => {
-    areaPresetBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.area, 10) === parseInt(areaInput.value, 10)));
+  /* Слайдер — при движении обновляет поле и пересчитывает */
+if(areaSlider){
+  areaSlider.addEventListener('input', (e) => {
+    const v = clampArea(parseInt(e.target.value, 10));
+    areaInput.value = v;
     recalc();
   });
-  areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)));
+}
+
+/* Поле — при вводе синхронизирует слайдер и пересчитывает */
+areaInput.addEventListener('input', () => {
+  const raw = parseInt(areaInput.value, 10);
+  if(!isNaN(raw) && areaSlider){
+    areaSlider.value = clampArea(raw);
+  }
+  recalc();
+});
+
+/* Поле — при потере фокуса обрезает до диапазона */
+areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)));
 
   packageCols.forEach(col => {
     function selectCol(){
