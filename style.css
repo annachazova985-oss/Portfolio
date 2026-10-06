@@ -935,8 +935,9 @@ html.lock-scroll{
 .mood-layout{ grid-template-columns:1fr; }
 .mood-board-panel{
   position:static;
-  order:-1;
-  margin-bottom:32px;
+  order:1;
+  margin-top:32px;
+  margin-bottom:0;
 }
     .swatch-grid .swatch{ flex-basis:calc(33.333% - 9.33px); }
     .swatch-grid.style-grid .swatch{ flex-basis:calc(50% - 7px); }
