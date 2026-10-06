@@ -1241,7 +1241,6 @@ html.lock-scroll{
 }
 
 /* На мобильном и планшете: показываем таблицу в компактном виде */
-/* На мобильном и планшете: показываем таблицу в компактном виде */
 @media (max-width: 980px) {
   .package-compare { display: none; }
 
@@ -1299,6 +1298,56 @@ html.lock-scroll{
   .package-table .th-hint {
     font-size: 0.68rem;
     line-height: 1.2;
+  }
+}
+/* Дополнительная адаптация таблицы для очень узких экранов (реальные телефоны) */
+@media (max-width: 480px) {
+  .package-table {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  .package-table thead th,
+  .package-table tbody td {
+    padding: 8px 2px !important; /* Уменьшаем отступы по бокам */
+    font-size: 0.68rem !important;
+    overflow-wrap: break-word; /* Разрешаем перенос длинных слов */
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Первая колонка — ровно половина */
+  .package-table thead th:first-child,
+  .package-table tbody td:first-child {
+    width: 50% !important;
+    white-space: normal !important;
+    padding-right: 4px !important;
+  }
+
+  /* Колонки пакетов — по 25% */
+  .package-table thead th.col-package,
+  .package-table tbody td.col-check {
+    width: 25% !important;
+    min-width: 0 !important;
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+    text-align: center;
+  }
+
+  /* Уменьшаем шрифт названий пакетов */
+  .package-table .package-name {
+    font-size: 0.65rem !important;
+    line-height: 1.1;
+    white-space: normal !important;
+  }
+
+  .package-table .package-rate {
+    font-size: 0.55rem !important;
+    line-height: 1.1;
+  }
+
+  .package-table .package-rate small {
+    font-size: 0.5rem !important;
   }
 }
 /* ================= СЛАЙДЕР ПЛОЩАДИ ================= */
