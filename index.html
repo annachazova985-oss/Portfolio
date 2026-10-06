@@ -30,8 +30,13 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<!-- Асинхронная загрузка шрифтов (не блокирует отрисовку) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"></noscript>
+
+<!-- Основной CSS загружается как обычно, чтобы не было "голого" сайта -->
 <link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="images/img-02.jpg">
 </head>
 <body>
   <div class="progress-bar" id="progressBar" aria-hidden="true">
