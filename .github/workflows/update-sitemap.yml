@@ -1,0 +1,35 @@
+name: Auto-update sitemap
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'images/**'
+      - 'scripts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.js
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sitemap.xml
+          git diff --quiet && git diff --staged --quiet || git commit -m "Автообновление sitemap.xml"
+          git push
