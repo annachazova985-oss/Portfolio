@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Страница не найдена — Студия «Среда»</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"></noscript>
+<link rel="stylesheet" href="style.css">
+<style>
+  .e404 { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px var(--pad) 80px; }
+  .e404-inner { max-width: 720px; width: 100%; }
+  .e404-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+  .e404-brand img { width: 44px; height: 44px; border-radius: 50%; }
+  .e404-brand span { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink); }
+  .e404-kicker { font-size: 0.85rem; letter-spacing: 0.05em; color: var(--ink-faint); display: block; margin-bottom: 16px; }
+  .e404-num { font-family: var(--serif); font-style: italic; font-size: clamp(5rem, 18vw, 11rem); line-height: 0.85; color: var(--accent-deep); letter-spacing: -0.03em; display: block; }
+  .e404-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 32px 0 20px; color: var(--ink); font-weight: 400; line-height: 1.2; }
+  .e404-text { color: var(--ink-soft); font-size: 1rem; margin-bottom: 40px; max-width: 48ch; line-height: 1.6; }
+  .e404-actions { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .e404-links { padding-top: 32px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px 28px; }
+  .e404-links a { font-size: 0.9rem; color: var(--ink-soft); border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color .3s ease, color .3s ease; }
+  .e404-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (max-width: 560px){
+    .e404 { padding: 80px var(--pad) 60px; }
+    .e404-brand { margin-bottom: 32px; }
+    .e404-actions { margin-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+<main class="e404">
+  <div class="e404-inner">
+    <a href="./" class="e404-brand">
+      <img src="images/img-01.png" alt="Логотип студии «Среда»">
+      <span>Среда</span>
+    </a>
+    <span class="e404-kicker">Ошибка 404</span>
+    <span class="e404-num">404</span>
+    <h1 class="e404-title">Кажется, эта страница куда-то ушла</h1>
+    <p class="e404-text">Такой страницы нет — возможно, ссылка устарела или в адресе опечатка. Но у нас есть много всего интересного: проекты, мудборд и расчёт стоимости.</p>
+    <div class="e404-actions">
+      <a href="./" class="btn-solid">На главную</a>
+      <a href="./#projects" class="hero-cta-link">Смотреть проекты</a>
+    </div>
+    <div class="e404-links">
+      <a href="./#about">О студии</a>
+      <a href="./#projects">Проекты</a>
+      <a href="./#approach">Подход</a>
+      <a href="./#calculator">Расчёт стоимости</a>
+      <a href="./#moodboard">Мудборд</a>
+      <a href="./#quotes">Отзывы</a>
+      <a href="./#booking">Контакты</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
