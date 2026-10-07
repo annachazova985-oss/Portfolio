@@ -1,4 +1,32 @@
-:root{
+/* ================= ЛОКАЛЬНЫЕ ШРИФТЫ ================= */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/InstrumentSerif-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/InstrumentSerif-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/InstrumentSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/InstrumentSans-Bold.woff2') format('woff2');
+}:root{
     --ink:        #2a2521;
     --ink-soft:   #59493d;
     --ink-faint:  #8a7a6a;
