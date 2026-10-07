@@ -23,6 +23,16 @@
     </image:image>
 
     <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-02-02.webp</image:loc>
+      <image:title>Фото проекта — квартира в зелёных тонах (кухня)</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-02-03.webp</image:loc>
+      <image:title>Фото проекта — квартира в зелёных тонах (кухня)</image:title>
+    </image:image>
+
+    <image:image>
       <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-03.webp</image:loc>
       <image:title>Гостиная и кухня единым пространством — квартира с латунными акцентами</image:title>
     </image:image>
@@ -63,11 +73,6 @@
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-11.jpg</image:loc>
-      <image:title>Фото проекта — студия «Среда»</image:title>
-    </image:image>
-
-    <image:image>
       <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-11.webp</image:loc>
       <image:title>Прихожая — консоль у зеркала</image:title>
     </image:image>
@@ -99,7 +104,7 @@
 
     <image:image>
       <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-17.webp</image:loc>
-      <image:title>Кухня-гостиная с изумрудной акцентной стеной</image:title>
+      <image:title>Гостиная с изумрудной акцентной стеной</image:title>
     </image:image>
 
   </url>
