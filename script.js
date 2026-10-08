@@ -1001,27 +1001,65 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
   });
 
   function renderBoard(){
-    const items = [];
-    if(selected.color) items.push(selected.color);
-    if(selected.texture) items.push(selected.texture);
-    selected.style.forEach(s => items.push(s));
+  const items = [];
+  if(selected.color) items.push({ ...selected.color, type: 'color' });
+  if(selected.texture) items.push({ ...selected.texture, type: 'texture' });
+  selected.style.forEach(s => items.push({ ...s, type: 'style' }));
 
-    boardPreview.innerHTML = '';
-    if(items.length === 0){
-      boardPreview.innerHTML = '<div class="board-empty">Выберите цвета, фактуры и настроение слева — они появятся здесь.</div>';
-      boardCount.textContent = 'Пока ничего не выбрано';
-      sendBtn.disabled = true;
-      return;
-    }
-    items.forEach(it=>{
-      const chip = document.createElement('div');
-      chip.className = 'board-chip';
-      chip.innerHTML = `<div class="board-chip-visual">${it.chipHTML}</div><span>${it.name}</span>`;
-      boardPreview.appendChild(chip);
-    });
-    boardCount.textContent = items.length + (items.length === 1 ? ' элемент выбран' : ' элемента(ов) выбрано');
-    sendBtn.disabled = false;
+  boardPreview.innerHTML = '';
+  const clearBtn = document.getElementById('clearMoodboard');
+
+  if(items.length === 0){
+    boardPreview.innerHTML = '<div class="board-empty">Выберите цвета, фактуры и настроение — они появятся здесь.</div>';
+    boardCount.textContent = 'Пока ничего не выбрано';
+    sendBtn.disabled = true;
+    if(clearBtn) clearBtn.hidden = true;
+    return;
   }
+  if(clearBtn) clearBtn.hidden = false;
+
+  items.forEach(it => {
+    const chip = document.createElement('div');
+    chip.className = 'board-chip';
+    chip.innerHTML = `
+      <button type="button" class="board-chip-remove" aria-label="Удалить «${it.name}»">✕</button>
+      <div class="board-chip-visual">${it.chipHTML}</div>
+      <span>${it.name}</span>
+    `;
+    chip.querySelector('.board-chip-remove').addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeFromMoodboard(it.type, it.name);
+    });
+    boardPreview.appendChild(chip);
+  });
+
+  boardCount.textContent = items.length + (items.length === 1 ? ' элемент выбран' : ' элемента(ов) выбрано');
+  sendBtn.disabled = false;
+}
+
+/* Удаление одного элемента из мудборда */
+function removeFromMoodboard(type, name){
+  if(type === 'color'){
+    selected.color = null;
+    document.querySelectorAll('#colorSwatches .swatch').forEach(s => {
+      if(s.dataset.name === name) s.classList.remove('selected');
+    });
+  }
+  if(type === 'texture'){
+    selected.texture = null;
+    document.querySelectorAll('#textureSwatches .swatch').forEach(s => {
+      if(s.dataset.name === name) s.classList.remove('selected');
+    });
+  }
+  if(type === 'style'){
+    selected.style = selected.style.filter(s => s.name !== name);
+    document.querySelectorAll('#styleSwatches .swatch').forEach(s => {
+      if(s.dataset.name === name) s.classList.remove('selected');
+    });
+  }
+  renderBoard();
+  saveMoodboard();
+}
 
   document.querySelectorAll('#colorSwatches .swatch').forEach(sw=>{
     sw.addEventListener('click', ()=>{
@@ -1078,6 +1116,17 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
     const body = 'Здравствуйте!%0D%0A%0D%0AСобрал(а) мудборд на сайте студии «Среда»:%0D%0A' + lines.join('%0D%0A') + '%0D%0A%0D%0AРасскажу подробнее при встрече.';
     window.location.href = 'mailto:d-tanika@yandex.ru?subject=' + encodeURIComponent('Мудборд с сайта') + '&body=' + body;
   });
+  /* Кнопка «Очистить всё» */
+document.getElementById('clearMoodboard').addEventListener('click', () => {
+  selected.color = null;
+  selected.texture = null;
+  selected.style = [];
+  document.querySelectorAll('#colorSwatches .swatch.selected, #textureSwatches .swatch.selected, #styleSwatches .swatch.selected').forEach(s => {
+    s.classList.remove('selected');
+  });
+  renderBoard();
+  saveMoodboard();
+});
     // Восстановление мудборда при загрузке страницы
   (function restoreMoodboard() {
     try {

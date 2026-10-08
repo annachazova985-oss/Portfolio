@@ -789,6 +789,76 @@ html.lock-scroll{
   .board-chip-visual{ width:68px; height:68px; overflow:hidden; border:1px solid var(--line); background:var(--paper-light); }
   .board-chip-visual > *{ width:100%; height:100%; }
   .board-chip span{ display:block; font-size:0.66rem; line-height:1.25; color:var(--ink-faint); margin-top:7px; }
+  /* Заголовок доски с кнопкой «Очистить» */
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.board-header h3 {
+  margin: 0;
+}
+
+.board-clear {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color .25s ease;
+}
+.board-clear:hover {
+  color: var(--ink);
+}
+
+/* Крестик на карточке в доске */
+.board-chip {
+  position: relative;
+}
+.board-chip-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper-light);
+  border: 2px solid var(--paper-light);
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transition: opacity .2s ease, transform .2s ease;
+  transform: scale(0.85);
+  z-index: 2;
+}
+.board-chip:hover .board-chip-remove,
+.board-chip-remove:focus-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.board-chip-remove:hover {
+  background: #a4573a;
+}
+
+/* На мобильных hover нет — крестик виден всегда */
+@media (hover: none) {
+  .board-chip-remove {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
   .mood-send-btn{
     width:100%; background:var(--accent-deep); color:var(--paper-light); border:none; padding:16px;
     font-family:var(--sans); font-size:0.92rem; cursor:pointer; transition:background .3s ease;
