@@ -888,7 +888,6 @@ function updateShareLinks(project){
   /* ---------------- CALCULATOR ---------------- */
   const packageRates = { standard: { name: 'Стандарт', rate: 2500 }, extended: { name: 'Расширенный', rate: 3000 } };
 
-  const packageCols = document.querySelectorAll('#packageCompare .package-col');
   const areaInput = document.getElementById('areaInput');
   const areaSlider = document.getElementById('areaSlider');
   const calcPackageName = document.getElementById('calcPackageName');
@@ -929,17 +928,7 @@ areaInput.addEventListener('input', () => {
 /* Поле — при потере фокуса обрезает до диапазона */
 areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)));
 
-  packageCols.forEach(col => {
-    function selectCol(){
-      packageCols.forEach(c => c.classList.remove('active'));
-      col.classList.add('active');
-      currentPackage = col.dataset.package;
-      recalc();
-    }
-    col.addEventListener('click', selectCol);
-    col.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectCol(); } });
-  });  /* Универсальная функция выбора пакета — вызывается и из карточек, и из таблицы.
-     Синхронизирует подсветку везде: карточки + таблица. */
+
   const packageTableHeaders = document.querySelectorAll('.package-table .col-package');
   const packageTableCells = document.querySelectorAll('.package-table .col-check');
 
@@ -952,19 +941,10 @@ areaInput.addEventListener('blur', () => setArea(parseInt(areaInput.value, 10)))
   }
 
   function selectPackage(pkg){
-    packageCols.forEach(c => c.classList.toggle('active', c.dataset.package === pkg));
     syncTableHighlight(pkg);
     currentPackage = pkg;
     recalc();
   }
-
-  // Клик по карточкам (мобильная версия)
-  packageCols.forEach(col => {
-    col.addEventListener('click', () => selectPackage(col.dataset.package));
-    col.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectPackage(col.dataset.package); }
-    });
-  });
 
   // Клик по заголовкам таблицы (десктоп)
   packageTableHeaders.forEach(th => {
