@@ -1203,6 +1203,36 @@ document.getElementById('clearMoodboard').addEventListener('click', () => {
     try{ localStorage.setItem('sreda_a11y_img', mode); }catch(e){}
   }
 
+    /* ---------------- ТЁМНАЯ ТЕМА ---------------- */
+  const themeToggle = document.getElementById('themeToggle');
+
+  function setTheme(mode){
+  document.body.classList.toggle('theme-dark', mode === 'dark');
+  try{ localStorage.setItem('sreda_theme', mode); }catch(e){}
+}
+
+ function getStoredTheme(){
+  try{ return localStorage.getItem('sreda_theme') || 'light'; }catch(e){ return 'light'; }
+}
+
+  function cycleTheme(){
+  const current = getStoredTheme();
+  const next = (current === 'dark') ? 'light' : 'dark';
+  setTheme(next);
+}
+
+  if(themeToggle){
+    themeToggle.addEventListener('click', cycleTheme);
+  }
+
+  /* Авто-режим: если в системе меняется тема — обновляем */
+  if(window.matchMedia){
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener('change', () => {
+      if(getStoredTheme() === 'auto') setTheme('auto');
+    });
+  }
+
   a11yFsBtns.forEach(b => b.addEventListener('click', () => setFontSize(parseInt(b.dataset.fs, 10))));
   a11ySpBtns.forEach(b => b.addEventListener('click', () => setSpacing(parseInt(b.dataset.sp, 10))));
   a11ySchemeBtns.forEach(b => b.addEventListener('click', () => setScheme(parseInt(b.dataset.scheme, 10))));
@@ -1221,6 +1251,8 @@ document.getElementById('clearMoodboard').addEventListener('click', () => {
       if(sp) setSpacing(sp);
       if(scheme) setScheme(scheme);
       if(img !== 'color') setImageMode(img);
+            const theme = getStoredTheme();
+      if(theme !== 'light') setTheme(theme);
     }catch(e){}
   })();
   /* ---------------- АНИМАЦИИ ПОЯВЛЕНИЯ СЕКЦИЙ ---------------- */
