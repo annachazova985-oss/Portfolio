@@ -648,6 +648,76 @@ carTrack.innerHTML = projectsData.map((p, i) => `
   projectClose.focus();
   updateShareLinks(currentProject);
 }
+/* ---------------- LIGHTBOX ---------------- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxCounter = document.getElementById('lightboxCounter');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+let lightboxIndex = 0;
+let lightboxPhotos = [];
+
+function openLightbox(photos, index) {
+  lightboxPhotos = photos;
+  lightboxIndex = index;
+  renderLightbox();
+  lightbox.classList.add('open');
+  lockBody();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  unlockBody();
+}
+
+function renderLightbox() {
+  const photo = lightboxPhotos[lightboxIndex];
+  if (!photo) return;
+  lightboxImg.src = photo.img;
+  lightboxImg.alt = photo.caption || '';
+  lightboxCaption.textContent = photo.caption || '';
+  const multi = lightboxPhotos.length > 1;
+  lightboxPrev.classList.toggle('hidden', !multi);
+  lightboxNext.classList.toggle('hidden', !multi);
+  lightboxCounter.textContent = multi ? (lightboxIndex + 1) + ' / ' + lightboxPhotos.length : '';
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+  // закрываем, только если клик по фону, не по картинке и не по кнопкам
+  if (e.target === lightbox) closeLightbox();
+});
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  lightboxIndex = (lightboxIndex - 1 + lightboxPhotos.length) % lightboxPhotos.length;
+  renderLightbox();
+});
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  lightboxIndex = (lightboxIndex + 1) % lightboxPhotos.length;
+  renderLightbox();
+});
+
+// клик по фото в модалке проекта — открываем лайтбокс
+projMedia.addEventListener('click', (e) => {
+  if (e.target.closest('.gallery-nav')) return; // не открываем, если клик по стрелке
+  if (!currentProject) return;
+  openLightbox(currentProject.photos, currentPhoto);
+});
+
+// Esc закрывает лайтбокс
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+  if (lightbox.classList.contains('open')) {
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'ArrowRight') lightboxNext.click();
+  }
+});
 
 /* ---------------- ПОДЕЛИТЬСЯ ПРОЕКТОМ ---------------- */
 function updateShareLinks(project){

@@ -850,6 +850,22 @@
   </div>
 </footer>
 
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M6 6 L18 18 M18 6 L6 18"/>
+    </svg>
+  </button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Предыдущее фото">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Следующее фото">›</button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+  <span class="lightbox-counter" id="lightboxCounter"></span>
+</div>
+
 <script src="script.js"></script>
 
 
