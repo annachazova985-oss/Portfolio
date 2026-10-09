@@ -141,6 +141,24 @@ function trapFocusInModal(e){
   privacyClose.addEventListener('click', closePrivacy);
   privacyOverlay.addEventListener('click', e=>{ if(e.target === privacyOverlay) closePrivacy(); });
 
+  /* ---------------- CONSENT MODAL (Согласие на обработку ПД) ---------------- */
+const consentOverlay = document.getElementById('consentOverlay');
+const consentClose = document.getElementById('consentClose');
+function openConsent(){
+  lastFocused = document.activeElement;
+  consentOverlay.classList.add('open');
+  lockBody();
+  consentClose.focus();
+}
+function closeConsent(){
+  consentOverlay.classList.remove('open');
+  unlockBody();
+  if(lastFocused) lastFocused.focus();
+}
+document.getElementById('openConsent').addEventListener('click', openConsent);
+consentClose.addEventListener('click', closeConsent);
+consentOverlay.addEventListener('click', e=>{ if(e.target === consentOverlay) closeConsent(); });
+
   /* ---------------- CALLBACK FORM: mask, validation, anti-spam, mailto ---------------- */
   const bookingForm = document.getElementById('bookingForm');
   const bnameInput = document.getElementById('bname');
@@ -504,6 +522,7 @@ setTimeout(() => {
   document.addEventListener('keydown', e=>{
   if(e.key === 'Escape'){
     // закрываем только верхнюю модалку — не все сразу
+    if(consentOverlay.classList.contains('open')) { closeConsent(); return; }
     if(privacyOverlay.classList.contains('open')) { closePrivacy(); return; }
     if(projectOverlay.classList.contains('open')) { closeProject(); return; }
     if(modalOverlay.classList.contains('open')) { closeModal(); return; }
