@@ -2215,3 +2215,34 @@ body.theme-dark .cookie-banner {
     justify-content: center;
   }
 }
+/* ================= АКТИВНАЯ НАВИГАЦИЯ ================= */
+/* Пункт меню, соответствующий секции, которая сейчас в поле зрения. */
+
+nav.desktop-nav a.is-active {
+  color: var(--ink);
+}
+
+nav.desktop-nav a.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* На мобильном десктопное меню скрыто — там своя навигация,
+   но если вы позже добавите подсветку в мобильное меню,
+   можно переиспользовать тот же класс. */
+.mobile-nav a.is-active {
+  color: var(--accent-deep);
+  position: relative;
+}
+
+.mobile-nav a.is-active::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--accent-deep);
+  border-radius: 50%;
+}

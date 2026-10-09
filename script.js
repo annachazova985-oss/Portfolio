@@ -1462,3 +1462,54 @@ document.getElementById('clearMoodboard').addEventListener('click', () => {
     }
   });
 })();
+/* ---------------- АКТИВНАЯ НАВИГАЦИЯ ---------------- */
+/* Отслеживаем, какая секция сейчас в поле зрения, 
+   и подсвечиваем соответствующий пункт меню. */
+(function initActiveNav(){
+  const navLinks = document.querySelectorAll('nav.desktop-nav a, .mobile-nav a');
+  if(navLinks.length === 0) return;
+
+  // Собираем секции, на которые ссылается меню
+  const sections = [];
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if(!href || !href.startsWith('#') || href === '#top') return;
+    const section = document.querySelector(href);
+    if(section && !sections.includes(section)){
+      sections.push(section);
+    }
+  });
+
+  if(sections.length === 0) return;
+
+  // Функция: подсветить пункт меню по id секции
+  function setActive(id){
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const isActive = href === '#' + id;
+      link.classList.toggle('is-active', isActive);
+    });
+  }
+
+  // Отслеживаем секции через IntersectionObserver
+  // rootMargin подбираем так, чтобы "активной" считалась секция,
+  // которая занимает верхнюю часть экрана (а не просто пересекается с ним).
+  const observer = new IntersectionObserver((entries) => {
+    // Из всех пересекающихся секций выбираем ту, что выше всех
+    let best = null;
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      if(!best || entry.boundingClientRect.top < best.boundingClientRect.top){
+        best = entry;
+      }
+    });
+    if(best){
+      setActive(best.target.id);
+    }
+  }, {
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(section => observer.observe(section));
+})();
