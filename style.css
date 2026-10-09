@@ -2381,3 +2381,10 @@ nav.desktop-nav a.is-active::after {
     text-align: left;
   }
 }
+/* ================= РЕКВИЗИТЫ В ФУТЕРЕ ================= */
+.footer-requisites {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #9aa38a;
+  margin-top: 14px;
+}
