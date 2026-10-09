@@ -885,28 +885,6 @@ function updateShareLinks(project){
     });
   })();
 
-  /* ---------------- TESTIMONIALS ---------------- */
-  const testimonialsData = [
-    { quote:'Татьяна услышала то, что мы сами не могли сформулировать про свой дом — и превратила это в пространство, в котором действительно хочется быть.', name:'Семья Ковалёвых', context:'квартира с латунными акцентами', photo:null },
-    { quote:'Работа со студией — это не про выбор мебели по каталогу, а про очень внимательный разговор о том, как мы живём.', name:'М. и Д.', context:'загородный дом', photo:null },
-    { quote:'Понравилось, что нам не пытались продать «модный» интерьер — предложили то, что подходит именно нам и нашим привычкам.', name:'Ольга', context:'квартира в зелёных тонах', photo:null },
-    { quote:'Сроки не сдвинулись ни разу, а на площадке всегда было понятно, что происходит и почему.', name:'Артём', context:'гостиная-кухня', photo:null }
-  ];
-
-  const testTrack = document.getElementById('testTrack');
-  testTrack.innerHTML = testimonialsData.map(t => {
-    const initials = t.name.split(' ').map(w=>w[0]).slice(0,2).join('');
-    const photoBlock = t.photo ? `<div class="test-photo"><img src="${t.photo}" alt="${t.context}"></div>` : `<div class="test-avatar">${initials}</div>`;
-    return `<article class="test-card">
-      ${photoBlock}
-      <blockquote>${t.quote}</blockquote>
-      <p class="quote-attr">${t.name}, ${t.context}</p>
-    </article>`;
-  }).join('');
-
-  document.getElementById('testPrev').addEventListener('click', ()=> testTrack.scrollBy({left:-360, behavior:'smooth'}));
-  document.getElementById('testNext').addEventListener('click', ()=> testTrack.scrollBy({left:360, behavior:'smooth'}));
-
   /* ---------------- CALCULATOR ---------------- */
   const packageRates = { standard: { name: 'Стандарт', rate: 2500 }, extended: { name: 'Расширенный', rate: 3000 } };
 

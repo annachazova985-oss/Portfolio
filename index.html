@@ -199,7 +199,7 @@
     <a href="#approach">Подход</a>
     <a href="#calculator">Расчёт</a>
     <a href="#moodboard">Мудборд</a>
-    <a href="#quotes">Отзывы</a>
+    <a href="#reviews-2gis">Отзывы</a>
   </nav>
 <div class="header-actions">
   <a href="tel:+79127839100" class="header-phone" aria-label="Позвонить: +7 912 783-91-00">
@@ -229,7 +229,7 @@
   <a href="#approach">Подход</a>
   <a href="#calculator">Расчёт стоимости</a>
   <a href="#moodboard">Мудборд</a>
-  <a href="#quotes">Отзывы</a>
+  <a href="#reviews-2gis">Отзывы</a>
 
   <div class="mobile-contacts">
     <span class="mobile-contacts-label">Связаться с нами</span>
@@ -635,18 +635,57 @@
     </defs>
   </svg>
 
-  <!-- ================= TESTIMONIALS ================= -->
-  <section class="section" id="quotes">
-    <div class="section-inner">
-      <h2 style="font-size:clamp(2rem,3.4vw,2.9rem); margin-bottom:14px">Отзывы</h2>
-      <p class="lede">Листайте карусель</p>
-      <div class="carousel-wrap" style="margin-top:50px">
-        <button class="car-btn" id="testPrev" aria-label="Предыдущий отзыв">‹</button>
-        <div class="carousel-track" id="testTrack"></div>
-        <button class="car-btn" id="testNext" aria-label="Следующий отзыв">›</button>
+  <!-- ================= 2GIS WIDGET ================= -->
+<section class="section section--compact" id="reviews-2gis" style="background:var(--paper)">
+  <div class="section-inner">
+    <button type="button" class="reviews-toggle" id="twogisToggle" aria-expanded="false" aria-controls="twogisContent">
+      <h2>Отзывы на 2ГИС</h2>
+      <svg class="reviews-toggle-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </button>
+
+    <div class="twogis-content" id="twogisContent" hidden>
+      <div class="twogis-widget-wrap">
+        <iframe id="big_light_70000001030656378" frameborder="0" sandbox="allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation" loading="lazy"></iframe>
       </div>
+      <p class="reviews-2gis-link">
+        <a href="https://go.2gis.com/BRswe" target="_blank" rel="noopener" class="hero-cta-link">Открыть карточку на 2ГИС →</a>
+      </p>
     </div>
-  </section>
+  </div>
+</section>
+
+<script type="text/javascript">
+  (function(){
+    const toggle = document.getElementById('twogisToggle');
+    const content = document.getElementById('twogisContent');
+    const iframe = document.getElementById('big_light_70000001030656378');
+    let loaded = false;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+      if(isOpen){
+        toggle.setAttribute('aria-expanded', 'false');
+        content.setAttribute('hidden', '');
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        content.removeAttribute('hidden');
+
+        if(!loaded){
+          loaded = true;
+          ((r,u)=>{
+            const l=document.getElementById(r);
+            l.contentWindow.document.open(),
+            l.contentWindow.document.write(decodeURIComponent(escape(atob(u)))),
+            l.contentWindow.document.close()
+          })("big_light_70000001030656378", "PGhlYWQ+PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPgogICAgd2luZG93Ll9fc2l6ZV9fPSdiaWcnOwogICAgd2luZG93Ll9fdGhlbWVfXz0nbGlnaHQnOwogICAgd2luZG93Ll9fYnJhbmNoSWRfXz0nNzAwMDAwMDEwMzA2NTYzNzgnCiAgICB3aW5kb3cuX19vcmdJZF9fPSc3MDAwMDAwMTAzMDY1NjM3NycKICAgPC9zY3JpcHQ+PHNjcmlwdCBjcm9zc29yaWdpbj0iYW5vbnltb3VzIiB0eXBlPSJtb2R1bGUiIHNyYz0iaHR0cHM6Ly9kaXNrLjJnaXMuY29tL3dpZGdldC1jb25zdHJ1Y3Rvci9hc3NldHMvaWZyYW1lLmpzIj48L3NjcmlwdD48bGluayByZWw9Im1vZHVsZXByZWxvYWQiIGNyb3Nzb3JpZ2luPSJhbm9ueW1vdXMiIGhyZWY9Imh0dHBzOi8vZGlzay4yZ2lzLmNvbS93aWRnZXQtY29uc3RydWN0b3IvYXNzZXRzL2RlZmF1bHRzLmpzIj48bGluayByZWw9InN0eWxlc2hlZXQiIGNyb3Nzb3JpZ2luPSJhbm9ueW1vdXMiIGhyZWY9Imh0dHBzOi8vZGlzay4yZ2lzLmNvbS93aWRnZXQtY29uc3RydWN0b3IvYXNzZXRzL2RlZmF1bHRzLmNzcyI+PC9oZWFkPjxib2R5PjxkaXYgaWQ9ImlmcmFtZSI+PC9kaXY+PC9ib2R5Pg==");
+        }
+      }
+    });
+  })();
+</script>
 
   <!-- ================= CTA / CONTACT ================= -->
   <section class="section cta-section" id="booking">
@@ -941,8 +980,7 @@
   <div class="cookie-banner-inner">
     <div class="cookie-banner-text">
       <p><strong>Мы используем файлы cookie</strong></p>
-      <p>Сайт использует технические cookie для работы и аналитические cookie для улучшения сервиса. Вы можете принять все cookie или отказаться от необязательных.</p>
-      <p class="cookie-banner-links">
+      <p>Сайт использует технические cookie для работы, аналитические cookie для улучшения сервиса, а также виджет 2ГИС для отображения отзывов. Виджет 2ГИС загружается только по вашему клику и ставит сторонние cookie. Вы можете принять все cookie или отказаться от необязательных.</p>      <p class="cookie-banner-links">
         <button type="button" class="policy-link" id="cookieOpenConsent">Согласие</button>
         <span>·</span>
         <button type="button" class="policy-link" id="cookieOpenPrivacy">Политика конфиденциальности</button>
