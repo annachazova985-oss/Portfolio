@@ -622,6 +622,68 @@ carTrack.innerHTML = projectsData.map((p, i) => `
   document.getElementById('carPrev').addEventListener('click', ()=> carTrack.scrollBy({left:-290, behavior:'smooth'}));
   document.getElementById('carNext').addEventListener('click', ()=> carTrack.scrollBy({left:290, behavior:'smooth'}));
 
+  /* ---------------- ТОЧКИ-ПАГИНАЦИЯ ДЛЯ КАРУСЕЛИ ПРОЕКТОВ ---------------- */
+(function initCarouselDots(){
+  const dotsContainer = document.getElementById('carouselDots');
+  if(!dotsContainer || !carTrack) return;
+
+  // Создаём точки по количеству проектов
+  const dots = projectsData.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', `Перейти к проекту ${i + 1}`);
+    dot.addEventListener('click', () => {
+      // Прокручиваем карусель к соответствующей карточке
+      const card = carTrack.querySelectorAll('.car-card')[i];
+      if(card){
+        carTrack.scrollTo({
+          left: card.offsetLeft - carTrack.offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+    });
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  // Обновляем активную точку при скролле карусели
+  function updateActiveDot(){
+    const cards = carTrack.querySelectorAll('.car-card');
+    if(cards.length === 0) return;
+
+    const trackRect = carTrack.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+    let activeIndex = 0;
+    let minDistance = Infinity;
+
+    cards.forEach((card, i) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(cardCenter - trackCenter);
+
+      if(distance < minDistance){
+        minDistance = distance;
+        activeIndex = i;
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  // Слушаем скролл карусели
+  carTrack.addEventListener('scroll', updateActiveDot, { passive: true });
+
+  // Обновляем при изменении размера окна
+  window.addEventListener('resize', updateActiveDot);
+
+  // Инициализация — ставим активной первую точку
+  updateActiveDot();
+})();
+
   const projectOverlay = document.getElementById('projectOverlay');
   const projectClose = document.getElementById('projectClose');
   const projMedia = document.getElementById('projMedia');
@@ -884,6 +946,90 @@ function updateShareLinks(project){
       }
     });
   })();
+  /* ---------------- СВАЙП В ЛАЙТБОКСЕ ---------------- */
+(function initLightboxSwipe(){
+  const SWIPE_THRESHOLD = 50;
+  const VERTICAL_LIMIT = 80;
+
+  let startX = 0;
+  let startY = 0;
+  let startTime = 0;
+  let isTouching = false;
+
+  lightbox.addEventListener('touchstart', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    startTime = Date.now();
+    isTouching = true;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', (e) => {
+    if (!isTouching) return;
+    const t = e.touches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+      if (e.cancelable) e.preventDefault();
+    }
+  }, { passive: false });
+
+  lightbox.addEventListener('touchend', (e) => {
+    if (!isTouching) return;
+    isTouching = false;
+
+    if (!lightbox.classList.contains('open')) return;
+    if (!lightboxPhotos || lightboxPhotos.length < 2) return;
+
+    const t = e.changedTouches[0];
+    const deltaX = t.clientX - startX;
+    const deltaY = t.clientY - startY;
+    const duration = Date.now() - startTime;
+
+    if (duration > 700) return;
+    if (Math.abs(deltaY) > VERTICAL_LIMIT) return;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+    if (deltaX < 0) {
+      lightboxNext.click();
+    } else {
+      lightboxPrev.click();
+    }
+  }, { passive: true });
+
+  // Для мыши (десктоп) — тоже свайп работает
+  lightbox.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.lightbox-nav') || e.target.closest('.lightbox-close')) return;
+    startX = e.clientX;
+    startY = e.clientY;
+    startTime = Date.now();
+    isTouching = true;
+  });
+
+  lightbox.addEventListener('mouseup', (e) => {
+    if (!isTouching) return;
+    if (e.target.closest('.lightbox-nav') || e.target.closest('.lightbox-close')) return;
+    isTouching = false;
+
+    if (!lightbox.classList.contains('open')) return;
+    if (!lightboxPhotos || lightboxPhotos.length < 2) return;
+
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+    const duration = Date.now() - startTime;
+
+    if (duration > 700) return;
+    if (Math.abs(deltaY) > VERTICAL_LIMIT) return;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+    if (deltaX < 0) {
+      lightboxNext.click();
+    } else {
+      lightboxPrev.click();
+    }
+  });
+})();
 
   /* ---------------- CALCULATOR ---------------- */
   const packageRates = { standard: { name: 'Стандарт', rate: 2500 }, extended: { name: 'Расширенный', rate: 3000 } };
