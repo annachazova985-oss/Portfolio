@@ -1377,7 +1377,42 @@ body.theme-dark .theme-toggle .theme-icon-moon {
     .menu-btn{ display:flex; }
 
     .hero-text{ grid-column:1 / span 12; }
-    .hero-visual{ display:none; }
+.hero-visual{
+  display:block;
+  grid-column:1 / span 12;
+  aspect-ratio:4/5;
+  margin-top:24px;
+  border-radius:2px 40px 2px 2px;
+}
+@media (max-width: 980px) {
+  /* Заголовок hero — компактнее */
+  h1.hero-title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    line-height: 1.1;
+  }
+
+  /* Kicker — компактнее */
+  .hero-kicker {
+    margin-bottom: 18px;
+  }
+
+  /* Лид — компактнее */
+  .hero-lede {
+    margin-top: 22px;
+    font-size: 1rem;
+  }
+
+  /* Кнопки — компактнее */
+  .hero-ctas {
+    margin-top: 28px;
+    gap: 16px;
+  }
+
+  /* Сам hero — уменьшаем отступы */
+  .hero {
+    padding: 120px var(--pad) 48px;
+  }
+}
 
     .about-visual{ grid-column:1 / span 12; aspect-ratio:16/9; margin-bottom:20px; }
     .about-content{ grid-column:1 / span 12; }
@@ -2245,4 +2280,13 @@ nav.desktop-nav a.is-active::after {
   height: 6px;
   background: var(--accent-deep);
   border-radius: 50%;
+}
+/* ================= HERO: сокращённый лид на мобильном ================= */
+/* На мобильном показываем только первое предложение лида.
+   Остальной текст остаётся в HTML для SEO и десктопа. */
+
+@media (max-width: 980px) {
+  .hero-lede-extra {
+    display: none;
+  }
 }
