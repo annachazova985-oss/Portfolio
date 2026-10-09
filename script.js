@@ -38,29 +38,32 @@ const header = document.getElementById('siteHeader');
 
   /* ---------------- MODALS (iOS-safe body lock) ---------------- */
   let lastFocused = null;
-  let lockedScrollY = 0;
-  let openOverlaysCount = 0;
+let lockedScrollY = 0;
 
- function lockBody(){
-  if(openOverlaysCount === 0){
-    lockedScrollY = window.scrollY;
-    const sbw = window.innerWidth - document.documentElement.clientWidth;
-    document.documentElement.classList.add('lock-scroll');
-    document.body.classList.add('lock-scroll');
-    document.body.style.paddingRight = sbw + 'px';
-    document.body.style.width = 'calc(100% - ' + sbw + 'px)';
-  }
-  openOverlaysCount++;
+function lockBody(){
+  // если скролл уже заблокирован — не трогаем позицию
+  if(document.body.classList.contains('lock-scroll')) return;
+
+  lockedScrollY = window.scrollY;
+  const sbw = window.innerWidth - document.documentElement.clientWidth;
+  document.documentElement.classList.add('lock-scroll');
+  document.body.classList.add('lock-scroll');
+  document.body.style.paddingRight = sbw + 'px';
+  document.body.style.width = 'calc(100% - ' + sbw + 'px)';
 }
+
 function unlockBody(){
-  openOverlaysCount = Math.max(0, openOverlaysCount - 1);
-  if(openOverlaysCount === 0){
-    document.documentElement.classList.remove('lock-scroll');
-    document.body.classList.remove('lock-scroll');
-    document.body.style.paddingRight = '';
-    document.body.style.width = '';
-    window.scrollTo(0, lockedScrollY);
-  }
+  // проверяем: есть ли ещё открытые модалки?
+  const anyModalOpen = document.querySelector('.modal-overlay.open, .lightbox.open');
+
+  // если хоть одна открыта — не разблокируем
+  if(anyModalOpen) return;
+
+  document.documentElement.classList.remove('lock-scroll');
+  document.body.classList.remove('lock-scroll');
+  document.body.style.paddingRight = '';
+  document.body.style.width = '';
+  window.scrollTo(0, lockedScrollY);
 }
   const modalOverlay = document.getElementById('modalOverlay');
   const modalClose = document.getElementById('modalClose');
@@ -1387,4 +1390,75 @@ document.getElementById('clearMoodboard').addEventListener('click', () => {
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress);
   updateProgress();
+})();
+/* ---------------- COOKIE BANNER ---------------- */
+(function initCookieBanner(){
+  const banner = document.getElementById('cookieBanner');
+  if(!banner) return;
+
+  const STORAGE_KEY = 'sreda_cookie_choice';
+
+  // Проверяем, сделал ли пользователь выбор ранее
+  let savedChoice = null;
+  try {
+    savedChoice = localStorage.getItem(STORAGE_KEY);
+  } catch(e) {
+    // localStorage может быть отключён — тогда показываем баннер
+  }
+
+  // Если выбор уже сделан — не показываем баннер
+  if(savedChoice) {
+    banner.removeAttribute('hidden');
+    return;
+  }
+
+  // Показываем баннер с анимацией
+  banner.removeAttribute('hidden');
+  requestAnimationFrame(() => {
+    banner.classList.add('visible');
+  });
+
+  // Обработчики кнопок
+  function saveChoice(choice) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        choice: choice,
+        date: new Date().toISOString(),
+        version: '1.0'
+      }));
+    } catch(e) {
+      // Если localStorage недоступен — просто игнорируем
+    }
+
+    banner.classList.remove('visible');
+    setTimeout(() => {
+      banner.setAttribute('hidden', '');
+    }, 400);
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    saveChoice('accepted');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', () => {
+    saveChoice('rejected');
+  });
+
+  // Ссылки на документы внутри баннера
+  document.getElementById('cookieOpenConsent').addEventListener('click', () => {
+    // Открываем модалку согласия — если она уже есть
+    const consentOverlay = document.getElementById('consentOverlay');
+    if(consentOverlay) {
+      consentOverlay.classList.add('open');
+      lockBody();
+    }
+  });
+
+  document.getElementById('cookieOpenPrivacy').addEventListener('click', () => {
+    const privacyOverlay = document.getElementById('privacyOverlay');
+    if(privacyOverlay) {
+      privacyOverlay.classList.add('open');
+      lockBody();
+    }
+  });
 })();

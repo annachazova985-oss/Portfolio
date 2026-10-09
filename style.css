@@ -2075,3 +2075,126 @@ body.theme-dark .theme-toggle .theme-icon-moon {
   .lightbox-close { top: 12px; right: 12px; width: 38px; height: 38px; }
   .lightbox-content img { max-height: calc(100vh - 140px); }
 }
+/* ================= COOKIE BANNER ================= */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  background: var(--paper-light);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 20px rgba(42,37,33,0.12);
+  padding: 24px max(var(--pad), env(safe-area-inset-right)) 24px max(var(--pad), env(safe-area-inset-left));
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.cookie-banner.visible {
+  transform: translateY(0);
+}
+
+.cookie-banner-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+  flex: 1 1 400px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.cookie-banner-text p {
+  margin-bottom: 6px;
+}
+
+.cookie-banner-text p:last-child {
+  margin-bottom: 0;
+}
+
+.cookie-banner-text strong {
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.cookie-banner-links {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.cookie-banner-links .policy-link {
+  font-size: 0.8rem;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: none;
+}
+
+.cookie-btn {
+  padding: 12px 22px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.cookie-btn:hover {
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+.cookie-btn-accept {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  color: var(--paper-light);
+}
+
+.cookie-btn-accept:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper-light);
+}
+
+/* Тёмная тема */
+body.theme-dark .cookie-banner {
+  background: var(--paper-light);
+  border-top-color: var(--line);
+}
+
+/* Мобильный */
+@media (max-width: 768px) {
+  .cookie-banner {
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .cookie-banner-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cookie-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

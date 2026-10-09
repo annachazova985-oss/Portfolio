@@ -119,6 +119,7 @@
     }
     </script>
     <meta name="google-site-verification" content="yr5MhHGhjSqfMl3QtHL7YXS_RV38K3jmgn68Y1nIQ1s" />
+    <script src="script.js" defer></script>
 </head>
 <body>
   <div class="progress-bar" id="progressBar" aria-hidden="true">
@@ -767,7 +768,7 @@
     <span>Я ознакомлен(а) и даю согласие на обработку моих персональных данных в соответствии с <button type="button" class="policy-link" id="openConsent">Согласием</button> и <button type="button" class="policy-link" id="openPrivacy">Политикой конфиденциальности</button> <span class="req">*</span></span>
   </label>
   <span class="field-error" id="bconsentError"></span>
-</div>>
+</div>
 
       <button type="submit" class="btn-solid" id="bookingSubmit" style="width:100%; justify-content:center" disabled>Заказать звонок</button>
       <p id="bookingNote" role="status" style="opacity:0; transition:opacity .4s ease; margin-top:16px; font-size:0.85rem; color:var(--ink-faint)"></p>
@@ -935,8 +936,24 @@
   <span class="lightbox-counter" id="lightboxCounter"></span>
 </div>
 
-<script src="script.js"></script>
-
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление об использовании cookie" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <p><strong>Мы используем файлы cookie</strong></p>
+      <p>Сайт использует технические cookie для работы и аналитические cookie для улучшения сервиса. Вы можете принять все cookie или отказаться от необязательных.</p>
+      <p class="cookie-banner-links">
+        <button type="button" class="policy-link" id="cookieOpenConsent">Согласие</button>
+        <span>·</span>
+        <button type="button" class="policy-link" id="cookieOpenPrivacy">Политика конфиденциальности</button>
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="cookie-btn cookie-btn-reject" id="cookieReject">Только необходимые</button>
+      <button type="button" class="cookie-btn cookie-btn-accept" id="cookieAccept">Принять все</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
