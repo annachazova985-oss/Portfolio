@@ -699,6 +699,91 @@ setTimeout(() => {
     ],
       desc:'Кухня решена в природном зелёном — от обоев с растительным рисунком до текстиля. Пример того, как маленькое помещение выигрывает от цельного сценария, а не набора случайных решений.',
       brief:'«Запрос заказчика появится позже».'
+    },
+    {
+      tag:'Кухня',
+      title:'Кухня, где много воздуха',
+      meta:'Пермь · визуализация',
+      cover:'images/project-07-01.webp',
+      photos:[
+        { img:'images/project-07-01.webp', caption:'Фото 1' },
+        { img:'images/project-07-02.webp', caption:'Фото 2' },
+        { img:'images/project-07-03.webp', caption:'Фото 3' }
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
+    },
+  {
+      tag:'Кухня',
+      title:'Кухня с акцентами',
+      meta:'Пермь · визуализация',
+      cover:'images/project-08-01.webp',
+      photos:[
+        { img:'images/project-08-01.webp', caption:'Фото 1' },
+        { img:'images/project-08-02.webp', caption:'Фото 2' },
+        { img:'images/project-08-03.webp', caption:'Фото 3' },
+        { img:'images/project-08-04.webp', caption:'Фото 4' },
+        { img:'images/project-08-05.webp', caption:'Фото 5' },
+        { img:'images/project-08-06.webp', caption:'Фото 6' }
+      
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
+    },
+    {
+      tag:'Ванная',
+      title:'Ванная в загородном доме',
+      meta:'Пермь · визуализация',
+      cover:'images/project-09-01.webp',
+      photos:[
+        { img:'images/project-09-01.webp', caption:'Фото 1' },
+        { img:'images/project-09-02.webp', caption:'Фото 2' },
+        { img:'images/project-09-03.webp', caption:'Фото 3' },
+        { img:'images/project-09-04.webp', caption:'Фото 4' },
+        { img:'images/project-09-05.webp', caption:'Фото 5' }
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
+    },
+    {
+      tag:'Ванная',
+      title:'Ванная с глубоким зелёным цветовым акцентом',
+      meta:'Пермь · визуализация',
+      cover:'images/project-10-01.webp',
+      photos:[
+        { img:'images/project-10-01.webp', caption:'Фото 1' },
+        { img:'images/project-10-02.webp', caption:'Фото 2' },
+        { img:'images/project-10-03.webp', caption:'Фото 3' }
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
+    },
+    {
+      tag:'Санузел',
+      title:'Санузел в зелёных оттенках',
+      meta:'Пермь · визуализация',
+      cover:'images/project-11-01.webp',
+      photos:[
+        { img:'images/project-11-01.webp', caption:'Фото 1' },
+        { img:'images/project-11-02.webp', caption:'Фото 2' }
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
+    },{
+      tag:'Детская',
+      title:'Нежная детская комната для девочки',
+      meta:'Пермь · визуализация',
+      cover:'images/project-12-01.webp',
+      photos:[
+        { img:'images/project-12-01.webp', caption:'Фото 1' },
+        { img:'images/project-12-02.webp', caption:'Фото 2' },
+        { img:'images/project-12-03.webp', caption:'Фото 3' },
+        { img:'images/project-12-04.webp', caption:'Фото 4' },
+        { img:'images/project-12-05.webp', caption:'Фото 5' },
+        { img:'images/project-12-06.webp', caption:'Фото 6' }
+      ],
+      desc:'Описание проекта появится позже.',
+      brief:'«Запрос заказчика появится позже».'
     }
   ];
 
