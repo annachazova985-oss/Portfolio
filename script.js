@@ -646,15 +646,34 @@ setTimeout(() => {
     desc:'Описание проекта появится позже.',
     brief:'«Запрос заказчика появится позже».'
   },
-    {
-      tag:'Гостиная', title:'Квартира с изумрудной стеной', meta:'Пермь · визуализация',
-      cover:'images/project-04-01.webp',
-      photos:[
-        { img:'images/project-04-01.webp', caption:'Гостиная с изумрудной акцентной стеной' }
-      ],
-      desc:'Гостиная-столовая, где акцентная изумрудная стена с латунными подвесами держит всю комнату, а тёплое дерево реечных панелей смягчает контраст и не даёт интерьеру стать холодным.',
-      brief:'«Нужна эффектная гостиная, в которой будет уютно и тепло».'
-    },
+      {
+    tag:'Загородный дом',
+    title:'Загородный дом для большой семьи с мягкими акцентами золота',
+    meta:'Пермь · визуализация',
+    cover:'images/project-04-01.webp',
+    photos:[
+      { img:'images/project-04-01.webp', caption:'Фото 1' },
+      { img:'images/project-04-02.webp', caption:'Фото 2' },
+      { img:'images/project-04-03.webp', caption:'Фото 3' },
+      { img:'images/project-04-04.webp', caption:'Фото 4' },
+      { img:'images/project-04-05.webp', caption:'Фото 5' },
+      { img:'images/project-04-06.webp', caption:'Фото 6' },
+      { img:'images/project-04-07.webp', caption:'Фото 7' },
+      { img:'images/project-04-08.webp', caption:'Фото 8' },
+      { img:'images/project-04-09.webp', caption:'Фото 9' },
+      { img:'images/project-04-10.webp', caption:'Фото 10' },
+      { img:'images/project-04-11.webp', caption:'Фото 11' },
+      { img:'images/project-04-12.webp', caption:'Фото 12' },
+      { img:'images/project-04-13.webp', caption:'Фото 13' },
+      { img:'images/project-04-14.webp', caption:'Фото 14' },
+      { img:'images/project-04-15.webp', caption:'Фото 15' },
+      { img:'images/project-04-16.webp', caption:'Фото 16' },
+      { img:'images/project-04-17.webp', caption:'Фото 17' },
+      { img:'images/project-04-18.webp', caption:'Фото 18' }
+    ],
+    desc:'Описание проекта появится позже.',
+    brief:'«Запрос заказчика появится позже».'
+  },
     {
       tag:'Кухня-гостиная', title:'Кухня гостинная в мягких тонах', meta:'Пермь',
       cover:'images/project-05-01.webp',
