@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://annachazova985-oss.github.io/Portfolio/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
 
@@ -23,73 +23,13 @@
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-02-02.webp</image:loc>
-      <image:title>Фото проекта — квартира в зелёных тонах (кухня)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-02-03.webp</image:loc>
-      <image:title>Фото проекта — квартира в зелёных тонах (кухня)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-03.webp</image:loc>
-      <image:title>Гостиная и кухня единым пространством — квартира с латунными акцентами</image:title>
-    </image:image>
-
-    <image:image>
       <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-04.webp</image:loc>
       <image:title>Фактура «Лён» — образец для мудборда</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05-01.webp</image:loc>
-      <image:title>Кухня-гостиная — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05-02.webp</image:loc>
-      <image:title>Кухня-гостиная — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05-03.webp</image:loc>
-      <image:title>Кухня-гостиная — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05-04.webp</image:loc>
-      <image:title>Кухня-гостиная — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05-05.webp</image:loc>
-      <image:title>Кухня-гостиная — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
       <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-05.webp</image:loc>
       <image:title>Фактура «Бархат» — образец для мудборда</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-06-01.webp</image:loc>
-      <image:title>Спальня — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-06-02.webp</image:loc>
-      <image:title>Спальня — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-06-03.webp</image:loc>
-      <image:title>Спальня — фото проекта (подпись появится позже)</image:title>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-06-04.webp</image:loc>
-      <image:title>Спальня — фото проекта (подпись появится позже)</image:title>
     </image:image>
 
     <image:image>
@@ -113,43 +53,378 @@
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-10.webp</image:loc>
-      <image:title>Прихожая с латунными ласточками — квартира 65 м², Пермь</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/logo.svg</image:loc>
+      <image:title>Фото проекта — студия «Среда»</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-11.webp</image:loc>
-      <image:title>Прихожая — консоль у зеркала</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-01.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая с латунными ласточками</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-12.webp</image:loc>
-      <image:title>Коридор со световым акцентом</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-02.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-13.webp</image:loc>
-      <image:title>Спальня — ТВ-зона с реечной панелью</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-03.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-14.webp</image:loc>
-      <image:title>Спальня — изголовье из велюра и открытые полки</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-04.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-15.webp</image:loc>
-      <image:title>Кухня с растительным орнаментом — квартира в зелёных тонах</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-05.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-16.webp</image:loc>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-06.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-07.webp</image:loc>
+      <image:title>Квартира 65 м² — прихожая</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-08.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-09.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-10.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-11.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-12.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-13.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-14.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-15.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-16.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-17.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-18.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-19.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-20.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-21.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-22.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-23.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-24.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-25.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-26.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-27.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-28.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-29.webp</image:loc>
+      <image:title>Квартира 65 м² — кабинет</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-30.webp</image:loc>
+      <image:title>Квартира 65 м² — ванная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-31.webp</image:loc>
+      <image:title>Квартира 65 м² — ванная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-32.webp</image:loc>
+      <image:title>Квартира 65 м² — ванная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-33.webp</image:loc>
+      <image:title>Квартира 65 м² — ванная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-34.webp</image:loc>
+      <image:title>Квартира 65 м² — ванная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-35.webp</image:loc>
+      <image:title>Квартира 65 м² — кухня-гостиная</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-36.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-37.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-38.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-39.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-40.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-41.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-42.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-43.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-01-44.webp</image:loc>
+      <image:title>Квартира 65 м² — спальня</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-01.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 1</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-02.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 2</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-03.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 3</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-04.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 4</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-05.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 5</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-06.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 6</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-07.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 7</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-08.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 8</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-09.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 9</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-10.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 10</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-11.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 11</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-12.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 12</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-13.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 13</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-14.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 14</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-15.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 15</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-16.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 16</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-17.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 17</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-18.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 18</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-19.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 19</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-02-20.webp</image:loc>
+      <image:title>Квартира в приглушённых тонах — фото 20</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-03-01.webp</image:loc>
       <image:title>Гостевой санузел в зелёной палитре</image:title>
     </image:image>
 
     <image:image>
-      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/img-17.webp</image:loc>
-      <image:title>Кухня-гостиная с изумрудной акцентной стеной</image:title>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-04-01.webp</image:loc>
+      <image:title>Гостиная с изумрудной акцентной стеной</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-05-01.webp</image:loc>
+      <image:title>Кухня-гостиная в мягких тонах — фото 1</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-05-02.webp</image:loc>
+      <image:title>Кухня-гостиная в мягких тонах — фото 2</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-05-03.webp</image:loc>
+      <image:title>Кухня-гостиная в мягких тонах — фото 3</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-05-04.webp</image:loc>
+      <image:title>Кухня-гостиная в мягких тонах — фото 4</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-05-05.webp</image:loc>
+      <image:title>Кухня-гостиная в мягких тонах — фото 5</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-06-01.webp</image:loc>
+      <image:title>Кухня в природных оттенках — фото 1</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-06-02.webp</image:loc>
+      <image:title>Кухня в природных оттенках — фото 2</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://annachazova985-oss.github.io/Portfolio/images/project-06-03).webp</image:loc>
+      <image:title>Фото проекта — студия «Среда»</image:title>
     </image:image>
 
   </url>
